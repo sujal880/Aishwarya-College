@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "96985570796",
+    "project_id": "aishwarya-college-d97f4",
+    "storage_bucket": "aishwarya-college-d97f4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:96985570796:android:242691fe50f07e889034c9",
+        "android_client_info": {
+          "package_name": "com.example.aishwarya_college"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "96985570796-muju0jbo64teebdu8e4gi54r8sqp3va4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCET9naJ9FGWoY-nWSbOU0EL9Dvv_dlSt8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "96985570796-muju0jbo64teebdu8e4gi54r8sqp3va4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
