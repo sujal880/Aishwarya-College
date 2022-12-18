@@ -9,6 +9,7 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 class _HomeScreenState extends State<HomeScreen> {
+  var Thorphy ="https://cdn-icons-png.flaticon.com/512/806/806129.png";
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -136,7 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: 400,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(14)),
-                        child: Image.asset('assets/images/education.jpg',
+                        child: Image.network('https://img.etimg.com/thumb/msid-88607879,width-300,imgsize-55812,,resizemode-4,quality-100/education.jpg',
                             fit: BoxFit.cover)),
                   ),
                   Card(
@@ -280,7 +281,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 15),
                                 child: CircleAvatar(
-                                  child: Image.asset('assets/images/external.png',
+                                  child: Image.network('https://user-images.githubusercontent.com/23284276/89722341-f8d5db80-d9be-11ea-9fa5-17f372b04859.png',
                                       height: 35),
                                   backgroundColor: Colors.black12,
                                 ),
@@ -971,8 +972,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12),
                               ),
-                              child: Image.asset('assets/images/computersci.jpg',
-                                  fit: BoxFit.fill),
+                              child: Image.network('https://tryengineering.org/wp-content/uploads/bigstock-Future-Artificial-Intelligence-366858865-1536x864.jpg',
+                                  fit: BoxFit.cover),
                             ),
                             Padding(
                               padding: const EdgeInsetsDirectional.only(
@@ -1430,7 +1431,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               Padding(
                                 padding: const EdgeInsetsDirectional.only(top:140,start:20),
-                                child: Image.asset('assets/images/trophy.png',height:30),
+                                child: Image.network(Thorphy,height:30),
                               ),
                               Padding(
                                 padding: const EdgeInsetsDirectional.only(top:140,start:6),
@@ -1449,7 +1450,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       decoration:BoxDecoration(
                                         borderRadius:BorderRadius.circular(12),
                                       ),
-                                      child:Image.asset('assets/images/c.jpg',fit:BoxFit.cover)
+                                      child:Image.network('https://yuvacourses.com/wp-content/uploads/2021/03/logo.png',fit:BoxFit.cover)
                                   ),
                                   Padding(
                                     padding: const EdgeInsetsDirectional.only(top:90,start:10),
@@ -1537,7 +1538,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               Padding(
                                 padding: const EdgeInsetsDirectional.only(top:140,start:20),
-                                child: Image.asset('assets/images/trophy.png',height:30),
+                                child: Image.network(Thorphy,height:30),
                               ),
                               Padding(
                                 padding: const EdgeInsetsDirectional.only(top:140,start:6),
@@ -1556,7 +1557,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       decoration:BoxDecoration(
                                         borderRadius:BorderRadius.circular(12),
                                       ),
-                                      child:Image.asset('assets/images/cpp.png',fit:BoxFit.cover)
+                                      child:Image.network('https://w7.pngwing.com/pngs/46/626/png-transparent-c-logo-the-c-programming-language-computer-icons-computer-programming-source-code-programming-miscellaneous-template-blue.png',fit:BoxFit.cover)
                                   ),
                                   Padding(
                                     padding: const EdgeInsetsDirectional.only(top:90,start:10),
@@ -1644,7 +1645,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: [
                               Padding(
                                 padding: const EdgeInsetsDirectional.only(top:140,start:20),
-                                child: Image.asset('assets/images/trophy.png',height:30),
+                                child: Image.network(Thorphy,height:30),
                               ),
                               Padding(
                                 padding: const EdgeInsetsDirectional.only(top:140,start:6),
@@ -1663,7 +1664,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       decoration:BoxDecoration(
                                         borderRadius:BorderRadius.circular(12),
                                       ),
-                                      child:Image.asset('assets/images/dbms.jpg',fit:BoxFit.cover)
+                                      child:Image.network('https://katatechinfo.com/wp-content/uploads/2022/10/DBMS.jpg',fit:BoxFit.cover)
                                   ),
                                   Padding(
                                     padding: const EdgeInsetsDirectional.only(top:90,start:10),
@@ -1763,8 +1764,8 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Row(
             children: [
               CircleAvatar(
-                  child: Image.asset(
-                      'assets/images/trophy.png')),
+                  child: Image.network(
+                      Thorphy)),
               SizedBox(width: 6),
               Padding(
                 padding: const EdgeInsetsDirectional.only(
