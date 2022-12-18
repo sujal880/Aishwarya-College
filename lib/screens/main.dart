@@ -52,7 +52,7 @@ class MyAppLoggedIn extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue
       ),
-      home: HomeScreen(userModel:userModel,firebaseuser: firebaseUser),
+      home: HomeScreen(),
     );
   }
 }

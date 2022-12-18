@@ -55,7 +55,7 @@ class _UserDeatilsState extends State<UserDetails>{
         ],
       );
     }));
-    Navigator.push(context,MaterialPageRoute(builder: (context)=>HomeScreen(userModel: widget.userModel, firebaseuser: widget.firebaseuser)));
+    Navigator.push(context,MaterialPageRoute(builder: (context)=>HomeScreen()));
   }
 
   void SelectImage(){

@@ -53,7 +53,7 @@ class _SignUpState extends State<LogIn> {
         DocumentSnapshot userData=await FirebaseFirestore.instance.collection("students").doc(uid).get();
         UserModel userModel=UserModel.fromMap(userData.data() as Map<String,dynamic>);
         print("logged In");
-        Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>HomeScreen(userModel: userModel, firebaseuser: userCredential!.user!)));
+        Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>HomeScreen()));
       }
     }
   }
