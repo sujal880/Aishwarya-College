@@ -55,7 +55,7 @@ class _SignUpState extends State<SignUp> {
         UserModel newUser=UserModel(uid: uid, fullname: "", email: email, phone: phone, course: course, profilepic: "");
         FirebaseFirestore.instance.collection("students").doc(email).set(newUser.toMap()).then((value) => print("User Created"));
         print(uid);
-        Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>UserDetails(userModel: newUser,firebaseuser: userCredential!.user!)));
+       Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>UserDetails(userModel: newUser,firebaseuser: userCredential!.user!)));
       }
     }
   }

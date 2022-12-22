@@ -1,10 +1,19 @@
+import 'dart:developer';
+
+import 'package:aishwarya_college/screens/attendancescreen.dart';
+import 'package:aishwarya_college/screens/login.dart';
+import 'package:aishwarya_college/screens/profile_screen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../models/usermodel.dart';
 class HomeScreen extends StatefulWidget {
-  // final UserModel userModel;
-  // final User firebaseuser;
-  // HomeScreen({required this.userModel,required this.firebaseuser});
+  final UserModel userModel;
+  final User firebaseuser;
+  HomeScreen({required this.userModel,required this.firebaseuser});
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -16,10 +25,10 @@ class _HomeScreenState extends State<HomeScreen> {
       top: true,
       child: Scaffold(
         appBar: AppBar(
-          title: Text("hi"),
-          iconTheme: IconThemeData(
-
-          ),
+          title: Text("${widget.userModel.fullname}"),
+          actions: [
+            IconButton(onPressed: (){}, icon: Icon(Icons.notification_add))
+          ],
         ),
         drawer: Drawer(
           shape:RoundedRectangleBorder(
@@ -27,10 +36,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 topRight: Radius.circular(8),
                 bottomRight: Radius.circular(8)),
           ),
-          width: MediaQuery.of(context).size.width/1.8,
+          width: MediaQuery.of(context).size.width/1.5,
           child: ListView(
             children: [
-              const DrawerHeader(
+              DrawerHeader(
                 curve: Curves.bounceIn,
                 padding: const EdgeInsets.only(top: 10),
                 decoration: BoxDecoration(
@@ -48,22 +57,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   currentAccountPictureSize: Size.square(50),
                   currentAccountPicture: CircleAvatar(
-                    backgroundColor: Colors.white,
-                    child: Text(
-                      "S",
-                      style: TextStyle(fontSize: 30.0, color: Colors.blue),
-                    ), //Text
+                    radius: 55,
+                    child: Text("${widget.userModel.fullname![0].toUpperCase()}",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.white),),
+                    backgroundColor: Colors.blue,
                   ),
 
                   accountName: Padding(
                     padding: EdgeInsets.only(top: 30),
-                    child: Text(
-                      "Sujal Dave",
+                    child: Text("${widget.userModel.fullname}",
                       style: TextStyle(fontSize: 18),
                     ),
                   ),
 
-                  accountEmail: Text("sujaldave880@gmail.com"),
+                  accountEmail: Text("${widget.userModel.email}"),
                   //circleAvatar
                 ), //UserAccountDrawerHeader
               ), //DrawerHeader
@@ -71,35 +77,28 @@ class _HomeScreenState extends State<HomeScreen> {
                 leading: const Icon(Icons.person),
                 title: const Text(' My Profile '),
                 onTap: () {
-                  //Navigator.push(context,MaterialPageRoute(builder: (context)=>MyProfile()));
+                  Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>ProfileScreen(userModel: widget.userModel,firebaseuser: widget.firebaseuser)));
                 },
               ),
               ListTile(
                 leading: const Icon(Icons.workspace_premium),
                 title: const Text('Home'),
                 onTap: () {
-                  //Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>HomeScreen()));
+                  Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>HomeScreen(userModel: widget.userModel, firebaseuser: widget.firebaseuser)));
                 },
               ),
               ListTile(
-                leading: const Icon(Icons.shopping_cart_outlined),
-                title: const Text('Cart'),
+                leading: const Icon(Icons.calendar_month),
+                title: const Text('Attendance'),
                 onTap: () {
-                  //Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>Cart()));
-                },
-              ),
-              ListTile(
-                leading: const Icon(Icons.edit),
-                title: const Text('Edit Profile'),
-                onTap: () {
-                  //Navigator.push(context,MaterialPageRoute(builder: (context)=>EditProfile()));
+                  Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>AttendanceScreen(userModel: widget.userModel, firebaseuser: widget.firebaseuser)));
                 },
               ),
               ListTile(
                 leading: const Icon(Icons.logout),
                 title: const Text('LogOut'),
                 onTap: () {
-                  //Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>LogIn()));
+                  logOut();
                 },
               ),
             ],
@@ -1781,6 +1780,10 @@ class _HomeScreenState extends State<HomeScreen> {
         )
       ]),
     );
+  }
+  Future logOut()async{
+    await FirebaseAuth.instance.signOut().then((value) => Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>LogIn())));
+    log("Log Out");
   }
 }
 /* */

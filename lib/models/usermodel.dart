@@ -1,12 +1,12 @@
 class UserModel{
-  String ? uid;
-  String ? fullname;
-  String ? email;
-  String ? phone;
-  String ? course;
-  String ? profilepic;
+  String? uid;
+  String? fullname;
+  String? email;
+  String? phone;
+  String? course;
+  String? profilepic;
 
-  UserModel({required this.uid,required this.fullname,required this.email,required this.phone,required this.course,required this.profilepic});
+  UserModel({this.uid,this.fullname,this.email,this.phone,this.course,this.profilepic});
   UserModel.fromMap(Map<String,dynamic>map){
     uid=map["uid"];
     fullname=map["fullname"];

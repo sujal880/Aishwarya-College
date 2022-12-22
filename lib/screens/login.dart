@@ -6,6 +6,8 @@ import 'package:aishwarya_college/screens/signup.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import 'bottomnavigationbar.dart';
 class LogIn extends StatefulWidget {
   const LogIn({Key? key}) : super(key: key);
 
@@ -50,10 +52,10 @@ class _SignUpState extends State<LogIn> {
       }
       if(userCredential!=null){
         String uid=userCredential.user!.uid;
-        DocumentSnapshot userData=await FirebaseFirestore.instance.collection("students").doc(uid).get();
+        DocumentSnapshot userData=await FirebaseFirestore.instance.collection("students").doc(email).get();
         UserModel userModel=UserModel.fromMap(userData.data() as Map<String,dynamic>);
         print("logged In");
-        Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>HomeScreen()));
+        Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>Bottom(userModel: userModel, firebaseuser: userCredential!.user!)));
       }
     }
   }

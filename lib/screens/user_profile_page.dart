@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
+import 'package:aishwarya_college/screens/bottomnavigationbar.dart';
 import 'package:aishwarya_college/screens/homescreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -55,7 +56,7 @@ class _UserDeatilsState extends State<UserDetails>{
         ],
       );
     }));
-    Navigator.push(context,MaterialPageRoute(builder: (context)=>HomeScreen()));
+    Navigator.push(context,MaterialPageRoute(builder: (context)=>Bottom(userModel:widget.userModel,firebaseuser: widget.firebaseuser)));
   }
 
   void SelectImage(){
