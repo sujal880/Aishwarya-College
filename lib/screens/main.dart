@@ -1,7 +1,10 @@
+
 import 'package:aishwarya_college/screens/login.dart';
+import 'package:aishwarya_college/screens/splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:uuid/uuid.dart';
 import '../models/firebasehelper.dart';
 import '../models/usermodel.dart';
@@ -12,6 +15,9 @@ var uuid=Uuid();
 void main()async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await GetStorage.init();
+  final User firebaseuser;
+  UserModel? thisUserModel;
   User? currentuser=FirebaseAuth.instance.currentUser;
   if(currentuser!=null){
     //Logged In
@@ -20,16 +26,20 @@ void main()async{
       runApp(MyAppLoggedIn(userModel: thisUserModel, firebaseuser: currentuser));
     }
     else{
-      runApp(MyApp());
+      runApp(MyApp(userModel: thisUserModel!,firebaseuser: currentuser,));
     }
   }
   else{
-    runApp(MyApp());
+    runApp(MyApp(userModel: thisUserModel!,firebaseuser: currentuser!,)
+    );
   }
 }
 
 //Not Logged In
 class MyApp extends StatelessWidget {
+  final User firebaseuser;
+  final UserModel userModel;
+  MyApp({required this.userModel,required this.firebaseuser});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -38,7 +48,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: LogIn()
+        home: Splash(userModel: userModel , firebaseuser: firebaseuser  ),
     );
   }
 }

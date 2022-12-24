@@ -69,8 +69,11 @@ class _SignUpState extends State<LogIn> {
                   colors: [
                     Colors.blue,
                     Colors.white,
-                  ],begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter
+                    Color(0xff90e8de)
+                  ],
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,
+
               )
           ),
           child: Column(

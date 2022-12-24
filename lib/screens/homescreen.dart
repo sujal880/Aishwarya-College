@@ -4,7 +4,7 @@ import 'package:aishwarya_college/screens/attendancescreen.dart';
 import 'package:aishwarya_college/screens/login.dart';
 import 'package:aishwarya_college/screens/profile_screen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+// import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

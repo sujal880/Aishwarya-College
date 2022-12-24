@@ -1,6 +1,10 @@
 import 'package:aishwarya_college/screens/profile_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:motion_tab_bar_v2/motion-tab-bar.dart';
+
+// optional, only if using provided badge style
+import 'package:motion_tab_bar_v2/motion-badge.widget.dart';
 
 import '../models/usermodel.dart';
 import 'attendancescreen.dart';
@@ -26,13 +30,65 @@ class _HomeScreenState extends State<Bottom> {
           AttendanceScreen(userModel: widget.userModel,firebaseuser: widget.firebaseuser),
           ProfileScreen(userModel: widget.userModel,firebaseuser: widget.firebaseuser)],
       ),
-      bottomNavigationBar: Container(
+
+        bottomNavigationBar: MotionTabBar(
+          initialSelectedTab: "Home",
+          labels: const ["Home", "Attendance", "profile"],
+          icons: navigationIcons,
+
+
+          // optional badges, length must be same with labels
+          badges: [
+            // Default Motion Badge Widget
+            const MotionBadgeWidget(
+             textColor: Colors.white, // optional, default to Colors.white
+              color: Colors.greenAccent, // optional, default to Colors.red
+              size: 18, // optional, default to 18
+            ),
+
+            const MotionBadgeWidget(
+                color: Colors.greenAccent, // optional, default to Colors.red
+                size: 18,
+            ),
+
+
+            // Default Motion Badge Widget with indicator only
+            const MotionBadgeWidget(
+                color: Colors.blue, // optional, default to Colors.red
+                size: 30
+            ),
+          ],
+          tabSize: 45,
+          tabBarHeight: 50,
+          textStyle: const TextStyle(
+            fontSize: 13.5,
+            color: Colors.black,
+            decorationColor: Colors.greenAccent,
+            fontWeight: FontWeight.w500,
+          ),
+          tabIconColor: Colors.blue[600],
+          tabIconSize: 28.0,
+          tabIconSelectedSize: 26.0,
+          tabSelectedColor: Colors.cyan,
+          tabIconSelectedColor: Colors.white,
+          tabBarColor: Colors.white,
+          onTabItemSelected: (int value) {
+            setState(() {
+              currentIndex = value;
+            });
+          },
+        ),
+
+      /*bottomNavigationBar: Container(
+
         height: 70,
         margin: EdgeInsets.only(left: 12, right: 12, bottom: 24),
         decoration: BoxDecoration(
+
             color: Colors.white,
             borderRadius: BorderRadius.circular(40),
             boxShadow: const [
+
               BoxShadow(
                   color: Colors.black26, blurRadius: 10, offset: Offset(2, 2))
             ]),
@@ -77,7 +133,7 @@ class _HomeScreenState extends State<Bottom> {
             ],
           ),
         ),
-      ),
+      )*/
     );
   }
 }

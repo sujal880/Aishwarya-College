@@ -1,21 +1,38 @@
+import 'package:aishwarya_college/screens/homescreen.dart';
+import 'package:aishwarya_college/screens/login.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:particles_flutter/particles_flutter.dart';
 
+import '../models/usermodel.dart';
 import 'bottomnavigationbar.dart';
 class Splash extends StatefulWidget{
+  final UserModel userModel;
+  final User firebaseuser;
+  Splash({required this.userModel,required this.firebaseuser});
   @override
   State<StatefulWidget> createState()=>SplashScreen();
 
 }
 
 class SplashScreen extends State<Splash>{
+final getStorge=GetStorage();
   @override
   void initState() {
     Timer(Duration(seconds: 5), () {
-      //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Bottom()));
-    });
+      if(getStorge.read("email")!=null){
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>Bottom(userModel: widget.userModel,
+            firebaseuser: widget.firebaseuser)));
+      }
+      else{
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>LogIn()));
+      }
+    }
+    );
     super.initState();
   }
 
@@ -57,5 +74,6 @@ class SplashScreen extends State<Splash>{
         )
     );
   }
+
 
 }
