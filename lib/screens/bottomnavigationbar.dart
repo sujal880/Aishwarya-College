@@ -1,6 +1,8 @@
+import 'package:aishwarya_college/screens/profile_page.dart';
 import 'package:aishwarya_college/screens/profile_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:motion_tab_bar_v2/motion-tab-bar.dart';
 
 // optional, only if using provided badge style
@@ -23,41 +25,19 @@ class _HomeScreenState extends State<Bottom> {
   List<IconData> navigationIcons = [Icons.home,Icons.check, Icons.account_circle_outlined];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: IndexedStack(
-        index: currentIndex,
-        children: [HomeScreen(userModel: widget.userModel,firebaseuser: widget.firebaseuser),
-          AttendanceScreen(userModel: widget.userModel,firebaseuser: widget.firebaseuser),
-          ProfileScreen(userModel: widget.userModel,firebaseuser: widget.firebaseuser)],
-      ),
+    return ScreenUtilInit(builder: (context,child){
+      return Scaffold(
+        body: IndexedStack(
+          index: currentIndex,
+          children: [HomeScreen(userModel: widget.userModel,firebaseuser: widget.firebaseuser),
+            AttendanceScreen(userModel: widget.userModel,firebaseuser: widget.firebaseuser),
+            ProfileScreen(userModel: widget.userModel,firebaseuser: widget.firebaseuser)],
+        ),
 
         bottomNavigationBar: MotionTabBar(
           initialSelectedTab: "Home",
           labels: const ["Home", "Attendance", "profile"],
           icons: navigationIcons,
-
-
-          // optional badges, length must be same with labels
-          badges: [
-            // Default Motion Badge Widget
-            const MotionBadgeWidget(
-             textColor: Colors.white, // optional, default to Colors.white
-              color: Colors.greenAccent, // optional, default to Colors.red
-              size: 18, // optional, default to 18
-            ),
-
-            const MotionBadgeWidget(
-                color: Colors.greenAccent, // optional, default to Colors.red
-                size: 18,
-            ),
-
-
-            // Default Motion Badge Widget with indicator only
-            const MotionBadgeWidget(
-                color: Colors.blue, // optional, default to Colors.red
-                size: 30
-            ),
-          ],
           tabSize: 45,
           tabBarHeight: 50,
           textStyle: const TextStyle(
@@ -79,7 +59,7 @@ class _HomeScreenState extends State<Bottom> {
           },
         ),
 
-      /*bottomNavigationBar: Container(
+        /*bottomNavigationBar: Container(
 
         height: 70,
         margin: EdgeInsets.only(left: 12, right: 12, bottom: 24),
@@ -134,6 +114,7 @@ class _HomeScreenState extends State<Bottom> {
           ),
         ),
       )*/
-    );
+      );
+    });
   }
 }

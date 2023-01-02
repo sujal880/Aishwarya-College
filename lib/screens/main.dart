@@ -1,9 +1,11 @@
 
 import 'package:aishwarya_college/screens/login.dart';
+import 'package:aishwarya_college/screens/signup.dart';
 import 'package:aishwarya_college/screens/splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:uuid/uuid.dart';
 import '../models/firebasehelper.dart';
@@ -26,29 +28,34 @@ void main()async{
       runApp(MyAppLoggedIn(userModel: thisUserModel, firebaseuser: currentuser));
     }
     else{
-      runApp(MyApp(userModel: thisUserModel!,firebaseuser: currentuser,));
+      runApp(MyApp());
     }
   }
   else{
-    runApp(MyApp(userModel: thisUserModel!,firebaseuser: currentuser!,)
+    runApp(MyApp()
     );
   }
 }
 
 //Not Logged In
 class MyApp extends StatelessWidget {
-  final User firebaseuser;
-  final UserModel userModel;
-  MyApp({required this.userModel,required this.firebaseuser});
+  // final User firebaseuser;
+  // final UserModel userModel;
+  // MyApp({required this.userModel,required this.firebaseuser});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return ScreenUtilInit(builder: (context,child){
+      return MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: Splash(userModel: userModel , firebaseuser: firebaseuser  ),
+        home: SignUp(),
+      );
+
+    },
+    designSize: const Size(360,680),
     );
   }
 }

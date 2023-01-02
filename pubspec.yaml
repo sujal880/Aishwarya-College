@@ -31,19 +31,28 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  #For Firebase Authentication
   firebase_auth: ^4.2.0
+  #For Firebase Access
   firebase_core: ^2.4.0
   cloud_firestore: ^4.2.0
   image_picker: ^0.8.6
   firebase_storage: ^11.0.7
+  #For Horizontal Slider for Home Screen
   carousel_slider: ^4.1.1
   flutter_staggered_animations: ^1.1.1
   particles_flutter: ^0.1.1
   flutter_launcher_icons: ^0.10.0
+  #For Different Icons
   font_awesome_flutter: ^10.3.0
   uuid: ^3.0.7
   get_storage: any
+  #For Navigation Bar
   motion_tab_bar_v2: ^0.2.3
+  #For Dropdown
+  animated_custom_dropdown: 1.2.2
+  #For Responsive Screen
+  flutter_screenutil: ^5.6.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
