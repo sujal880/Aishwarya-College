@@ -1,7 +1,4 @@
-
-
 import 'package:aishwarya_college/models/usermodel.dart';
-import 'package:aishwarya_college/screens/course_selection_list.dart';
 import 'package:aishwarya_college/screens/login.dart';
 import 'package:aishwarya_college/screens/user_profile_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

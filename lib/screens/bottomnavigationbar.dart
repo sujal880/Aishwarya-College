@@ -1,5 +1,4 @@
 import 'package:aishwarya_college/screens/profile_page.dart';
-import 'package:aishwarya_college/screens/profile_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -36,20 +35,20 @@ class _HomeScreenState extends State<Bottom> {
 
         bottomNavigationBar: MotionTabBar(
           initialSelectedTab: "Home",
-          labels: const ["Home", "Attendance", "profile"],
+          labels: const ["Home", "Attendance", "Profile"],
           icons: navigationIcons,
           tabSize: 45,
-          tabBarHeight: 50,
+          tabBarHeight: 60,
           textStyle: const TextStyle(
             fontSize: 13.5,
             color: Colors.black,
-            decorationColor: Colors.greenAccent,
+            decorationColor: Colors.white,
             fontWeight: FontWeight.w500,
           ),
           tabIconColor: Colors.blue[600],
           tabIconSize: 28.0,
           tabIconSelectedSize: 26.0,
-          tabSelectedColor: Colors.cyan,
+          tabSelectedColor: Colors.blue,
           tabIconSelectedColor: Colors.white,
           tabBarColor: Colors.white,
           onTabItemSelected: (int value) {

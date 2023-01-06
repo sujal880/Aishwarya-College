@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:aishwarya_college/screens/attendancescreen.dart';
 import 'package:aishwarya_college/screens/login.dart';
 import 'package:aishwarya_college/screens/profile_page.dart';
-import 'package:aishwarya_college/screens/profile_screen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 // import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -1152,7 +1151,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12),
                               ),
-                              child: Image.asset('assets/images/principal.jpg',
+                              child: Image.network('https://www.aishwaryacollege.edu.in/theme/RishiNepalia.jpg',
                                   fit: BoxFit.fill),
                             ),
                             Padding(
@@ -1225,7 +1224,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12),
                               ),
-                              child: Image.asset('assets/images/naveensir.jpg',
+                              child: Image.network('https://www.aishwaryacollege.edu.in/images/faculty/162685674518.jpg',
                                   fit: BoxFit.fill),
                             ),
                             Padding(
@@ -1298,8 +1297,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12),
                               ),
-                              child: Image.asset(
-                                  'assets/images/shailendrasir.jpg',
+                              child: Image.network(
+                                  'https://www.aishwaryacollege.edu.in/images/faculty/162685684319.jpg',
                                   fit: BoxFit.fill),
                             ),
                             Padding(
