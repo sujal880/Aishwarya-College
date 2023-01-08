@@ -116,6 +116,7 @@ class _SignUpState extends State<SignUp> {
                                     color: Colors.black12
                                 ),
                                 child: getTextFile(hint: 'Email',
+                                       KeyboardType: TextInputType.text,
                                        Controller: emailController,
                                        Icon: Icon(Icons.email)),
                               ),
@@ -135,15 +136,12 @@ class _SignUpState extends State<SignUp> {
                                     borderRadius: BorderRadius.circular(8),
                                     color: Colors.black12
                                 ),
-                                child: TextField(
-                                  controller: passwordController,
-                                  keyboardType: TextInputType.text,
-                                  decoration: InputDecoration(
-                                      hintText: 'Password',
-                                      prefixIcon: Icon(Icons.lock),
-                                      suffixIcon: Icon(Icons.remove_red_eye),
-                                      border: InputBorder.none
-                                  ),
+                                child: getTextFile(hint: 'Password',
+                                    KeyboardType: TextInputType.text,
+                                    Controller: passwordController,
+                                    Icon: Icon(Icons.lock),
+                                  sIcon: Icon(Icons.remove_red_eye)
+                                  
                                 ),
                               ),
                             ],
@@ -161,15 +159,10 @@ class _SignUpState extends State<SignUp> {
                                     borderRadius: BorderRadius.circular(8),
                                     color: Colors.black12
                                 ),
-                                child: TextField(
-                                  controller: phoneController,
-                                  keyboardType: TextInputType.phone,
-                                  decoration: InputDecoration(
-                                      hintText: 'Phone',
-                                      prefixIcon: Icon(Icons.phone),
-                                      border: InputBorder.none
-                                  ),
-                                ),
+                                child: getTextFile(hint: 'Phone',
+                                     KeyboardType: TextInputType.phone,
+                                    Controller: phoneController,
+                                    Icon: Icon(Icons.phone)),
                               ),
                             ],
                           ),
@@ -186,15 +179,10 @@ class _SignUpState extends State<SignUp> {
                                     borderRadius: BorderRadius.circular(8),
                                     color: Colors.black12
                                 ),
-                                child:TextField(
-                                  controller: coursesController,
-                                  keyboardType: TextInputType.text,
-                                  decoration: InputDecoration(
-                                      hintText: 'Course',
-                                      prefixIcon: Icon(Icons.school),
-                                      border: InputBorder.none
-                                  ),
-                                ),
+                                child:getTextFile(hint: 'Course',
+                                    KeyboardType: TextInputType.text,
+                                    Controller: coursesController,
+                                    Icon: Icon(Icons.school)),
                               ),
                             ],
                           ),
@@ -239,15 +227,17 @@ class _SignUpState extends State<SignUp> {
                                 ),*/
 
   Widget getTextFile(
-  {required String hint,required TextEditingController Controller,required Icon Icon})
+  {required String hint,required TextEditingController Controller,required Icon Icon,sIcon,required KeyboardType })
     {
     return TextField(
       controller: Controller,
-      keyboardType: TextInputType.text,
+      keyboardType: KeyboardType,
       decoration: InputDecoration(
         hintText: hint,
+        contentPadding: EdgeInsets.only(top: 10.sp,),
         prefixIcon: Icon,
-        border: InputBorder.none
+        border: InputBorder.none,
+        suffixIcon: sIcon
       ),
 
 

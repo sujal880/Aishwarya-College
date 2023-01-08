@@ -27,34 +27,33 @@ class _Edit_ProfileState extends State<Edit_Profile> {
         centerTitle: true,
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(height: 40),
-          Center(
-            child: Stack(
-              children:[
-                Card(
-                  elevation:20,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(100)
-                  ),
-                  child: CircleAvatar(
-                    radius: 70,
-                    backgroundColor: Colors.white,
-                  ),
+          Stack(
+            children:[
+              Card(
+                elevation:20,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(100)
                 ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.only(top: 10,start: 10),
-                  child: CircleAvatar(
-                    radius: 65,
-                    backgroundImage: NetworkImage("${widget.usermodel.profilepic}"),
-                  ),
+                child: CircleAvatar(
+                  radius: 70,
+                  backgroundColor: Colors.white,
                 ),
-                Padding(
-                  padding: const EdgeInsetsDirectional.only(start:100,top: 115),
-                  child: Icon(Icons.add_circle,size: 30,color: Colors.blue,),
-                )
-              ]
-            ),
+              ),
+              Padding(
+                padding: const EdgeInsetsDirectional.only(top: 10,start: 10),
+                child: CircleAvatar(
+                  radius: 65,
+                  backgroundImage: NetworkImage("${widget.usermodel.profilepic}"),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsetsDirectional.only(start:100,top: 115),
+                child: Icon(Icons.add_circle,size: 30,color: Colors.blue,),
+              )
+            ]
           ),
           SizedBox(height: 50),
           Row(
@@ -139,7 +138,7 @@ class _Edit_ProfileState extends State<Edit_Profile> {
                 updateProfileData();
               },
               child: Container(
-                height: 60,
+                height: 59,
                 width: 200,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
@@ -171,9 +170,9 @@ class _Edit_ProfileState extends State<Edit_Profile> {
           );
         });
       }
-      // else{
-      //   usersref.document(widget.)
-      // }
+       else{
+         print("done");
+       }
     });
   }
 }
