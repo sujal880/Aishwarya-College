@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:aishwarya_college/screens/attendancescreen.dart';
+import 'package:aishwarya_college/screens/lecture.dart';
 import 'package:aishwarya_college/screens/login.dart';
 import 'package:aishwarya_college/screens/profile_page.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -348,10 +349,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         children: [
                           InkWell(
                             onTap: () {
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) => Arts()));
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Lecture()));
                             },
                             child: Container(
                               height: 260,
