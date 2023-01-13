@@ -7,6 +7,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 // import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../models/usermodel.dart';
@@ -107,6 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
         body: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 20),
               CarouselSlider(
@@ -177,38 +179,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   SizedBox(height: 10,),
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
-
                     child: Row(
-                      //mainAxisAlignment: MainAxisAlignment.start,
-                      //crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(width: 20,),
-                        //For Lectures
-                        Container(
-                          height: 70,
-                          width: 200,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            gradient:  LinearGradient(
-                                colors: [Colors.lightBlueAccent, Colors.white]),
-                          ),
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 15),
-                                child: CircleAvatar(
-                                  child: Icon(Icons.tv, size: 35, color: Colors.white),
-                                  backgroundColor: Colors.white12,
-                                  radius: 25,
-                                ),
-                              ),
-                              SizedBox(width: 8),
-                              Text('Lectures',
-                                  style: TextStyle(
-                                      fontSize: 22, fontWeight: FontWeight.bold))
-                            ],
-                          ),
-                        ),
                         SizedBox(width: 20,),
                         //For AboutUs
                         Container(
@@ -233,6 +205,33 @@ class _HomeScreenState extends State<HomeScreen> {
                               Text('About Us',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold, fontSize: 22))
+                            ],
+                          ),
+                        ),
+                        SizedBox(width: 20,),
+                        //For Lecture
+                        Container(
+                          height: 70,
+                          width: 200,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            gradient:  LinearGradient(
+                                colors: [Colors.lightBlueAccent, Colors.white]),
+                          ),
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 15),
+                                child: CircleAvatar(
+                                  child: Icon(Icons.tv, size: 35, color: Colors.white),
+                                  backgroundColor: Colors.white12,
+                                  radius: 25,
+                                ),
+                              ),
+                              SizedBox(width: 8),
+                              Text('Lectures',
+                                  style: TextStyle(
+                                      fontSize: 22, fontWeight: FontWeight.bold))
                             ],
                           ),
                         ),
@@ -281,7 +280,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 padding: const EdgeInsets.only(left: 15),
                                 child: CircleAvatar(
                                   child: Image.network('https://user-images.githubusercontent.com/23284276/89722341-f8d5db80-d9be-11ea-9fa5-17f372b04859.png',
-                                      height: 35),
+                                      height: 34,color: Colors.white),
                                   backgroundColor: Colors.black12,
                                 ),
                               ),
@@ -299,140 +298,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   )
                 ],
               ),
-              //old code
-              /*SizedBox(height: 20),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    SizedBox(width: 24),
-                    Stack(children: [
-                      Container(
-                        height: 70,
-                        width: 200,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          gradient: LinearGradient(
-                              colors: [Colors.lightBlueAccent, Colors.white]),
-                        ),
-                      ),
-                      Padding(
-                        padding:
-                        const EdgeInsetsDirectional.only(top: 15, start: 30),
-                        child: Row(
-                          children: [
-                            CircleAvatar(
-                              child: Image.asset('assets/images/info.png'),
-                              radius: 20,
-                            ),
-                            SizedBox(width: 5),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.only(top: 5),
-                              child: Text('About Us',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold, fontSize: 22)),
-                            )
-                          ],
-                        ),
-                      )
-                    ]),
-                    SizedBox(width: 20),
-                    Stack(children: [
-                      Container(
-                        height: 70,
-                        width: 210,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            gradient: LinearGradient(
-                                colors: [Colors.purpleAccent, Colors.white])),
-                      ),
-                      Padding(
-                        padding:
-                        const EdgeInsetsDirectional.only(top: 15, start: 15),
-                        child: Row(
-                          children: [
-                            CircleAvatar(
-                              child: Image.asset('assets/images/external.png',
-                                  height: 35),
-                              backgroundColor: Colors.black12,
-                            ),
-                            SizedBox(width: 5),
-                            InkWell(onTap:(){
-                              //Navigator.push(context,MaterialPageRoute(builder:(context)=>ExternalLinks()));
-                            },
-                              child: Text('External Links',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold, fontSize: 22)),
-                            )
-                          ],
-                        ),
-                      )
-                    ]),
-                    SizedBox(width: 25),
-                    Stack(children: [
-                      Container(
-                        height: 70,
-                        width: 200,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            gradient: LinearGradient(
-                                colors: [Colors.yellowAccent, Colors.white])),
-                      ),
-                      Padding(
-                        padding:
-                        const EdgeInsetsDirectional.only(start: 20, top: 15),
-                        child: Row(
-                          children: [
-                            CircleAvatar(
-                              child:
-                              Icon(Icons.tv, size: 35, color: Colors.black),
-                              backgroundColor: Colors.black12,
-                              radius: 20,
-                            ),
-                            SizedBox(width: 15),
-                            Text('Lectures',
-                                style: TextStyle(
-                                    fontSize: 22, fontWeight: FontWeight.bold))
-                          ],
-                        ),
-                      )
-                    ]),
-                    SizedBox(width: 20),
-                    Stack(children: [
-                      Container(
-                        height: 70,
-                        width: 200,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            gradient: LinearGradient(
-                                colors: [Colors.greenAccent, Colors.white])),
-                      ),
-                      Padding(
-                        padding:
-                        const EdgeInsetsDirectional.only(top: 15, start: 20),
-                        child: Row(
-                          children: [
-                            CircleAvatar(
-                              child: Icon(Icons.menu_book_sharp,
-                                  color: Colors.black, size: 35),
-                              backgroundColor: Colors.black12,
-                              radius: 20,
-                            ),
-                            SizedBox(width: 15),
-                            InkWell(onTap:(){
-                              //Navigator.push(context,MaterialPageRoute(builder:(context)=>E_Library()));
-                            },
-                              child: Text('E-Library',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold, fontSize: 22)),
-                            )
-                          ],
-                        ),
-                      )
-                    ])
-                  ],
-                ),
-              ),*/
               SizedBox(height: 20),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
@@ -543,79 +408,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           BottomDetail(),
                           BottomDetailPadding(),
-                          /*Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsetsDirectional.only(
-                                    top: 115, start: 20),
-                                child: Text('4.5',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.grey,
-                                        fontSize: 16)),
-                              ),
-                              SizedBox(width: 3),
-                              Padding(
-                                padding:
-                                const EdgeInsetsDirectional.only(top: 112),
-                                child: Icon(
-                                  Icons.star,
-                                  color: Colors.yellow,
-                                ),
-                              ),
-                              SizedBox(width: 3),
-                              Padding(
-                                padding:
-                                const EdgeInsetsDirectional.only(top: 117),
-                                child: Text('48K learners',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.grey)),
-                              )
-                            ],
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.only(
-                                top: 145, start: 20),
-                            child: Stack(children: [
-                              Container(
-                                height: 20,
-                                width: 110,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(6),
-                                    color: Colors.blueAccent),
-                              ),
-                              Padding(
-                                padding: const EdgeInsetsDirectional.only(
-                                    top: 2, start: 4),
-                                child: Text('Video Lessons',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white)),
-                              ),
-                              Padding(
-                                padding:
-                                const EdgeInsetsDirectional.only(top: 40),
-                                child: Row(
-                                  children: [
-                                    CircleAvatar(
-                                        child: Image.asset(
-                                            'assets/images/trophy.png')),
-                                    SizedBox(width: 6),
-                                    Padding(
-                                      padding: const EdgeInsetsDirectional.only(
-                                          top: 2),
-                                      child: Text('Enroll Now',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.grey,
-                                              fontSize: 16)),
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ]),
-                          )*/
                         ],
                       ),
                     ),
@@ -684,93 +476,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             )
                           ]),
                         ),
-                        //old code
-                        /*Row(
-                          children: [
-                            Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.only(
-                                      top: 115, start: 20),
-                                  child: Text('4.3K',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.grey)),
-                                ),
-                                SizedBox(
-                                  width: 3,
-                                ),
-                                Padding(
-                                  padding:
-                                  const EdgeInsetsDirectional.only(top: 110),
-                                  child: Icon(Icons.star, color: Colors.yellow),
-                                ),
-                                SizedBox(width: 3),
-                                Padding(
-                                  padding:
-                                  const EdgeInsetsDirectional.only(top: 95),
-                                  child: Text('.',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 40,
-                                          color: Colors.grey)),
-                                ),
-                                SizedBox(width: 3),
-                                Padding(
-                                  padding:
-                                  const EdgeInsetsDirectional.only(top: 115),
-                                  child: Text('40K learners',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.grey)),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.only(
-                              top: 145, start: 20),
-                          child: Stack(children: [
-                            Container(
-                              height: 20,
-                              width: 100,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(6),
-                                  color: Colors.blue),
-                            ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.only(
-                                  start: 3, top: 2),
-                              child: Text(
-                                'Video Lessons',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white),
-                              ),
-                            )
-                          ]),
-                        ),
-                        Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsetsDirectional.only(
-                                  top: 180, start: 20),
-                              child: CircleAvatar(
-                                child: Image.asset('assets/images/trophy.png'),
-                              ),
-                            ),
-                            SizedBox(width: 10),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.only(top: 180),
-                              child: Text('Enroll Now',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.grey,
-                                      fontSize: 16)),
-                            )
-                          ],
-                        )*/
                         BottomDetail(),
                         BottomDetailPadding(),
                       ]),
@@ -841,93 +546,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             )
                           ]),
                         ),
-                        //Old Code
-                        /*Row(
-                          children: [
-                            Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.only(
-                                      top: 115, start: 20),
-                                  child: Text('4.3K',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.grey)),
-                                ),
-                                SizedBox(
-                                  width: 3,
-                                ),
-                                Padding(
-                                  padding:
-                                  const EdgeInsetsDirectional.only(top: 110),
-                                  child: Icon(Icons.star, color: Colors.yellow),
-                                ),
-                                SizedBox(width: 3),
-                                Padding(
-                                  padding:
-                                  const EdgeInsetsDirectional.only(top: 95),
-                                  child: Text('.',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 40,
-                                          color: Colors.grey)),
-                                ),
-                                SizedBox(width: 3),
-                                Padding(
-                                  padding:
-                                  const EdgeInsetsDirectional.only(top: 115),
-                                  child: Text('40K learners',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.grey)),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.only(
-                              top: 145, start: 20),
-                          child: Stack(children: [
-                            Container(
-                              height: 20,
-                              width: 100,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(6),
-                                  color: Colors.blue),
-                            ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.only(
-                                  start: 3, top: 2),
-                              child: Text(
-                                'Video Lessons',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white),
-                              ),
-                            )
-                          ]),
-                        ),
-                        Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsetsDirectional.only(
-                                  top: 180, start: 20),
-                              child: CircleAvatar(
-                                child: Image.asset('assets/images/trophy.png'),
-                              ),
-                            ),
-                            SizedBox(width: 10),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.only(top: 180),
-                              child: Text('Enroll Now',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.grey,
-                                      fontSize: 16)),
-                            )
-                          ],
-                        )*/
                         BottomDetail(),
                         BottomDetailPadding()
                       ]),
@@ -998,94 +616,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             )
                           ]),
                         ),
-                        //Old Code
-                        /*Row(
-                          children: [
-                            Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.only(
-                                      top: 115, start: 20),
-                                  child: Text('4.3K',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.grey)),
-                                ),
-                                SizedBox(
-                                  width: 3,
-                                ),
-                                Padding(
-                                  padding:
-                                  const EdgeInsetsDirectional.only(top: 110),
-                                  child: Icon(Icons.star, color: Colors.yellow),
-                                ),
-                                SizedBox(width: 3),
-                                Padding(
-                                  padding:
-                                  const EdgeInsetsDirectional.only(top: 95),
-                                  child: Text('.',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 40,
-                                          color: Colors.grey)),
-                                ),
-                                SizedBox(width: 3),
-                                Padding(
-                                  padding:
-                                  const EdgeInsetsDirectional.only(top: 115),
-                                  child: Text('40K learners',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.grey)),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.only(
-                              top: 145, start: 20),
-                          child: Stack(children: [
-                            Container(
-                              height: 20,
-                              width: 100,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(6),
-                                  color: Colors.blue),
-                            ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.only(
-                                  start: 3, top: 2),
-                              child: Text(
-                                'Video Lessons',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white),
-                              ),
-                            )
-                          ]),
-                        ),
-                        Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsetsDirectional.only(
-                                  top: 180, start: 20),
-                              child: CircleAvatar(
-                                child: Image.asset('assets/images/trophy.png'),
-                              ),
-                            ),
-                            SizedBox(width: 10),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.only(top: 180),
-                              child: Text('Enroll Now',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.grey,
-                                      fontSize: 16)),
-                            )
-                          ],
-                        )*/
-
                         //new Changes
                         BottomDetail(),
                         BottomDetailPadding(),
@@ -1098,10 +628,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
               SizedBox(height: 30,),
               Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SizedBox(width: 20),
                   Text('Our College', style: TextStyle(fontSize: 26)),
-                  SizedBox(width: 140),
+                  SizedBox(width: 135.w),
                   Padding(
                     padding: const EdgeInsetsDirectional.only(top: 7),
                     child: Text('SEE ALL',
@@ -1109,241 +641,39 @@ class _HomeScreenState extends State<HomeScreen> {
                             fontWeight: FontWeight.bold, color: Colors.blue)),
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.only(top: 7),
+                    padding: const EdgeInsetsDirectional.only(top: 7,start: 3),
                     child: Icon(Icons.arrow_circle_right,
                         color: Colors.blue, size: 20),
                   )
                 ],
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 10),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    SizedBox(width: 20),
-                    Card(
-                      elevation: 15,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12)),
-                      child: Stack(children: [
-                        Container(
-                          height: 260,
-                          width: 300,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
-                              color: Colors.black12),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.only(
-                              top: 20, start: 20),
-                          child: Text("Principal's\nMessage",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 30)),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.only(
-                              start: 185, top: 20),
-                          child: Stack(children: [
-                            Container(
-                              clipBehavior: Clip.antiAlias,
-                              height: 100,
-                              width: 100,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: Image.network('https://www.aishwaryacollege.edu.in/theme/RishiNepalia.jpg',
-                                  fit: BoxFit.fill),
-                            ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.only(
-                                  start: 23, top: 90),
-                              child: Stack(children: [
-                                Container(
-                                  height: 20,
-                                  width: 60,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(12),
-                                      color: Colors.green),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.only(
-                                      start: 5, top: 7),
-                                  child: Text('Dr.Rishi Nepalia',
-                                      style: TextStyle(
-                                          fontSize: 7,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white)),
-                                )
-                              ]),
-                            ),
-                          ]),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.only(
-                              top: 140, start: 20),
-                          child: Text(
-                              'It gives me great pleasure to invite\nyou to take initial peek into the heart that\nbeats behind the appealing facade of\nAishwarya College.I thank you for your\ninterest in this exceptional institution.',
-                              style: TextStyle(fontSize: 14)),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.only(
-                              top: 230, start: 180),
-                          child: Text('-Dr.Rishi Nepalia',
-                              style: TextStyle(fontWeight: FontWeight.bold)),
-                        )
-                      ]),
-                    ),
-                    SizedBox(width: 20),
-                    Card(
-                      elevation: 15,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12)),
-                      child: Stack(children: [
-                        Container(
-                          height: 260,
-                          width: 300,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
-                              color: Colors.black12),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.only(
-                              top: 20, start: 20),
-                          child: Text("HOD's\nMessage",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 30)),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.only(
-                              start: 185, top: 20),
-                          child: Stack(children: [
-                            Container(
-                              clipBehavior: Clip.antiAlias,
-                              height: 100,
-                              width: 100,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: Image.network('https://www.aishwaryacollege.edu.in/images/faculty/162685674518.jpg',
-                                  fit: BoxFit.fill),
-                            ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.only(
-                                  start: 23, top: 90),
-                              child: Stack(children: [
-                                Container(
-                                  height: 20,
-                                  width: 60,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(12),
-                                      color: Colors.green),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.only(
-                                      start: 5, top: 7),
-                                  child: Text('Mr.Naveen Joshi',
-                                      style: TextStyle(
-                                          fontSize: 7,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white)),
-                                )
-                              ]),
-                            ),
-                          ]),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.only(
-                              top: 140, start: 20),
-                          child: Text(
-                              'It gives me great pleasure to invite\nyou to take initial peek into the heart that\nbeats behind the appealing facade of\nAishwarya College.I thank you for your\ninterest in this exceptional institution.',
-                              style: TextStyle(fontSize: 14)),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.only(
-                              top: 230, start: 150),
-                          child: Text('-Mr.Naveen Dutt Joshi',
-                              style: TextStyle(fontWeight: FontWeight.bold)),
-                        )
-                      ]),
-                    ),
-                    SizedBox(width: 20),
-                    Card(
-                      elevation: 15,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12)),
-                      child: Stack(children: [
-                        Container(
-                          height: 260,
-                          width: 300,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
-                              color: Colors.black12),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.only(
-                              top: 20, start: 20),
-                          child: Text("Professor's\nMessage",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 30)),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.only(
-                              start: 185, top: 20),
-                          child: Stack(children: [
-                            Container(
-                              clipBehavior: Clip.antiAlias,
-                              height: 100,
-                              width: 100,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: Image.network(
-                                  'https://www.aishwaryacollege.edu.in/images/faculty/162685684319.jpg',
-                                  fit: BoxFit.fill),
-                            ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.only(
-                                  start: 16, top: 90),
-                              child: Stack(children: [
-                                Container(
-                                  height: 20,
-                                  width: 70,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(12),
-                                      color: Colors.green),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.only(
-                                      start: 7, top: 7),
-                                  child: Text('Dr.Shailendra Purohit',
-                                      style: TextStyle(
-                                          fontSize: 6,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white)),
-                                )
-                              ]),
-                            ),
-                          ]),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.only(
-                              top: 140, start: 20),
-                          child: Text(
-                              'It gives me great pleasure to invite\nyou to take initial peek into the heart that\nbeats behind the appealing facade of\nAishwarya College.I thank you for your\ninterest in this exceptional institution.',
-                              style: TextStyle(fontSize: 14)),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.only(
-                              top: 230, start: 150),
-                          child: Text('-Dr.Shailendra Purohit',
-                              style: TextStyle(fontWeight: FontWeight.bold)),
-                        )
-                      ]),
-                    ),
+                    SizedBox(width: 20,),
+                    OurCollegePerson(Post: "Principal's\nMessage", ImageUrl: "https://www.aishwaryacollege.edu.in/theme/RishiNepalia.jpg", Sheight: 25,Left: 162,
+                        SirName: "Dr.Rishi Nepalia",
+                        Message: "'It gives me great pleasure to invite\nyou to take initial peek into the heart that\nbeats behind the appealing facade of\nAishwarya College.I thank you for your\ninterest in this exceptional institution.",
+                        TagName: "-Dr.Rishi Nepalia"),
+                    SizedBox(width: 20,),
+                    OurCollegePerson(Post:"HOD's\nMessage",Sheight: 43,Left: 120,
+                        ImageUrl: "https://www.aishwaryacollege.edu.in/images/faculty/162685674518.jpg", SirName: "Mr.Naveen Joshi",
+                        Message:'It gives me great pleasure to invite\nyou to take initial peek into the heart that\nbeats behind the appealing facade of\nAishwarya College.I thank you for your\ninterest in this exceptional institution.',
+                        TagName: "-Mr.Naveen Dutt Joshi"),
+                    SizedBox(width: 20,),
+                    OurCollegePerson(Post: "Professor's\nMessage",Left: 125,
+                        ImageUrl: 'https://www.aishwaryacollege.edu.in/images/faculty/162685684319.jpg', SirName: 'Dr.Shailendra Purohit',
+                        Message: 'It gives me great pleasure to invite\nyou to take initial peek into the heart that\nbeats behind the appealing facade of\nAishwarya College.I thank you for your\ninterest in this exceptional institution.',
+                        TagName: '-Dr.Shailendra Purohit', Sheight: 10)
                   ],
                 ),
               ),
+              SizedBox(height: 15,)
             ],
+
           ),
 
         ),
@@ -1434,5 +764,74 @@ class _HomeScreenState extends State<HomeScreen> {
     await FirebaseAuth.instance.signOut().then((value) => Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>LogIn())));
     log("Log Out");
   }
+
+  Widget OurCollegePerson({required Post,required ImageUrl,required SirName, required Message , required TagName,required double Sheight,required double Left}){
+    return Container(
+      height: 260,
+      width: 300,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          color: Colors.black12
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(left: 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 17,),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(Post,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 30)),
+                SizedBox(width: Sheight,),
+                Stack(
+                  children: [
+                    Container(
+                      clipBehavior: Clip.antiAlias,
+                      height: 100,
+                      width: 100,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Image.network(ImageUrl,
+                          fit: BoxFit.fill),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 88,left: 5),
+                      child: Container(
+                        height: 20,
+                        width: 90,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: Colors.green),
+                        child: Center(
+                          child: Text(SirName,
+                              style: TextStyle(
+                                  fontSize: 8,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white)),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            SizedBox(height: 12,),
+            Text(
+                Message,
+                style: TextStyle(fontSize: 14)),
+            SizedBox(height: 5,),
+            Padding(
+              padding: EdgeInsets.only(left: Left),
+              child: Text(TagName,
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
-/* */

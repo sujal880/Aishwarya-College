@@ -126,7 +126,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Navigator.push(context,MaterialPageRoute(builder: (context)=>Edit_Profile(usermodel: widget.userModel,firebaseuser: widget.firebaseuser)));
                 },
                 child: Container(
-                  height: 60,
+                  height: 48,
                   width: 200,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),

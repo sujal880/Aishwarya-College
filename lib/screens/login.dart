@@ -1,11 +1,9 @@
-import 'dart:math';
-
 import 'package:aishwarya_college/models/usermodel.dart';
-import 'package:aishwarya_college/screens/homescreen.dart';
 import 'package:aishwarya_college/screens/signup.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'bottomnavigationbar.dart';
 class LogIn extends StatefulWidget {
@@ -81,14 +79,14 @@ class _SignUpState extends State<LogIn> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(30.0),
-                child: Stack(
+                child:Stack(
                     children:[
                       Card(
                         elevation:16,
                         shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                         child: Container(
-                          height: 400,
-                          width: 400,
+                          height: 350.h,
+                          width: 500.w,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
                               color:Colors.white
@@ -164,7 +162,7 @@ class _SignUpState extends State<LogIn> {
                                   child: ElevatedButton(onPressed: ()async{
                                     CheckValues();
                                   }, child: Text('Sign In'),style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),backgroundColor: Colors.blue),)),
-                              SizedBox(width: 20),
+                              SizedBox(width: 4),
                               TextButton(onPressed: (){}, child: Text("Forgot Password?",style: TextStyle(fontSize: 16),))
                             ]
                         ),
@@ -191,3 +189,5 @@ class _SignUpState extends State<LogIn> {
     );
   }
 }
+
+/**/
