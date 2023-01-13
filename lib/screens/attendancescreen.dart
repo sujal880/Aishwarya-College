@@ -144,52 +144,6 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                       );
                     }
                 ),
-                // Padding(
-                //   padding: const EdgeInsetsDirectional.only(start:20,end: 20),
-                //   child: Container(
-                //     margin: EdgeInsets.only(top:120),
-                //     child: Builder(builder: (context){
-                //       final GlobalKey<SlideActionState> key=GlobalKey();
-                //       return SlideAction(
-                //         text:CheckIn=="--/--" ? "Slide to Check In" : "Slide to Check Out"
-                //        ,textStyle: TextStyle(color: Colors.black54,fontSize: width/20),
-                //         outerColor: Colors.white,
-                //         innerColor: Colors.blue,
-                //         key: key,
-                //         onSubmit: ()async{
-                //           Timer(Duration(seconds: 1), () {
-                //             key.currentState!.reset();
-                //           });
-                //           print(DateFormat('hh:mm').format(DateTime.now()));
-                //           QuerySnapshot snapshot=await FirebaseFirestore.instance.collection("students").where('id',isEqualTo: widget.userModel.email).get();
-                //           DocumentSnapshot snap2=await FirebaseFirestore.instance.collection("students").doc(widget.userModel.email).collection("Time").doc(DateFormat('dd MMMM yyyy').format(DateTime.now())).get();
-                //           try{
-                //             String CheckIn=snap2['CheckIn'];
-                //             setState(() {
-                //               CheckIn=DateFormat('hh:mm').format(DateTime.now());
-                //               CheckOut=DateFormat('hh:mm').format(DateTime.now());
-                //             });
-                //             await FirebaseFirestore.instance.collection("students").doc(widget.userModel.email).collection("Time").doc(DateFormat(' dd MMMM yyyy').format(DateTime.now())).update(
-                //                 {
-                //                   'CheckIn':CheckIn,
-                //                   'CheckOut':CheckOut
-                //                 });
-                //           }catch(ex){
-                //             setState(() {
-                //               CheckIn=DateFormat('hh:mm').format(DateTime.now());
-                //               CheckOut=DateFormat('hh:mm').format(DateTime.now());
-                //             });
-                //             await FirebaseFirestore.instance.collection("students").doc(widget.userModel.email).collection( "Time").doc(DateFormat(' dd MMMM yyyy').format(DateTime.now())).set(
-                //                 {
-                //                   'CheckIn':DateFormat('hh:mm').format(DateTime.now()),
-                //                   'CheckOut':DateFormat('hh:mm').format(DateTime.now())
-                //                 });
-                //           }
-                //         },
-                //       );
-                //     }),
-                //   ),
-                // ),
                 SizedBox(height: 40),
                 Row(
                   children: [
