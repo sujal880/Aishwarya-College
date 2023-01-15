@@ -190,19 +190,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
                             gradient: LinearGradient(
-                                colors: [Color(0xff7fc9b1), Colors.white]),
+                                colors: [Colors.lightBlue, Colors.white]),
                           ),
                           child: Row(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(left: 15),
-                                child: CircleAvatar(
-                                  child: FaIcon(FontAwesomeIcons.info,color: Colors.white,size: 35,),
-                                  radius: 27,
-                                  backgroundColor: Colors.white10,
-                                ),
+                                padding: const EdgeInsets.only(left: 30),
+                                child: Image.network("https://github.com/sujal880/College_App/blob/master/assets/images/info.png?raw=true",height: 40)
                               ),
-                              SizedBox(width: 8),
+                              SizedBox(width: 12),
                               Text('About Us',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold, fontSize: 22))
@@ -217,15 +213,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
                             gradient:  LinearGradient(
-                                colors: [Colors.lightBlueAccent, Colors.white]),
+                                colors: [Colors.purpleAccent, Colors.white]),
                           ),
                           child: Row(
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(left: 15),
                                 child: CircleAvatar(
-                                  child: Icon(Icons.tv, size: 35, color: Colors.white),
-                                  backgroundColor: Colors.white12,
+                                  child: Icon(Icons.tv, size: 35, color: Colors.black),
+                                  backgroundColor: Colors.black12,
                                   radius: 25,
                                 ),
                               ),
@@ -244,7 +240,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
                             gradient: LinearGradient(
-                                colors: [Colors.greenAccent, Colors.white]),
+                                colors: [Colors.yellowAccent, Colors.white]),
                           ),
                           child: Row(
                             children: [
@@ -252,8 +248,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 padding: const EdgeInsets.only(left: 10),
                                 child: CircleAvatar(
                                   child: Icon(Icons.menu_book_sharp,
-                                      color: Colors.white, size: 35),
-                                  backgroundColor: Colors.white24,
+                                      color: Colors.black, size: 35),
+                                  backgroundColor: Colors.black12,
                                   radius: 25,
                                 ),
 
@@ -273,15 +269,16 @@ class _HomeScreenState extends State<HomeScreen> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
                             gradient: LinearGradient(
-                                colors: [Colors.purpleAccent, Colors.white]),
+                                colors: [Colors.greenAccent, Colors.white]),
                           ),
                           child: Row(
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(left: 15),
                                 child: CircleAvatar(
-                                  child: Image.network('https://user-images.githubusercontent.com/23284276/89722341-f8d5db80-d9be-11ea-9fa5-17f372b04859.png',
-                                      height: 34,color: Colors.white),
+                                  radius: 25,
+                                  child: Image.network('https://github.com/sujal880/College_App/blob/master/assets/images/external.png?raw=true',
+                                      height: 34,color: Colors.black),
                                   backgroundColor: Colors.black12,
                                 ),
                               ),
