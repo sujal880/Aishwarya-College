@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:aishwarya_college/services/location_services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:intl/intl.dart';
 import 'package:slide_to_act/slide_to_act.dart';
 
@@ -19,12 +21,35 @@ class AttendanceScreen extends StatefulWidget {
 class _AttendanceScreenState extends State<AttendanceScreen> {
   String CheckIn="--/--";
   String CheckOut="--/--";
+  String location="";
   @override
   void initState() {
     super.initState();
     _getRecord();
+    _startlocationService();
   }
 
+  void _startlocationService()async{
+    LocationService().initialize();
+    LocationService().getLongitude().then((value){
+      setState(() {
+        UserModel.long=value!;
+      });
+    });
+
+    LocationService().getLatitude().then((value){
+      setState(() {
+        UserModel.lat=value!;
+      });
+    });
+  }
+
+  void getLocation()async{
+    List<Placemark> placemark=await placemarkFromCoordinates(UserModel.lat, UserModel.long);
+    setState(() {
+      location="${placemark[0].street},${placemark[0].administrativeArea},${placemark[0].postalCode},${placemark[0].country}";
+    });
+  }
   void _getRecord()async{
     try{
       QuerySnapshot snapshot=await FirebaseFirestore.instance.collection("students").where("${widget.userModel.uid}").get();
@@ -194,7 +219,8 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                 Container(
                     margin: EdgeInsets.only(top:50),
                     child:Text('You have completed this day!',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),)
-                )
+                ),
+                location !="" ? Text("Location"+location) : SizedBox()
               ],
             ),
           ),
@@ -203,61 +229,132 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
   }
   checkIn()async{
     print(DateFormat('hh:mm').format(DateTime.now()));
-              QuerySnapshot snapshot=await FirebaseFirestore.instance.collection("students").where('id',isEqualTo: widget.userModel.email).get();
-              DocumentSnapshot snap2=await FirebaseFirestore.instance.collection("students").doc(widget.userModel.email).collection("Time").doc(DateFormat('dd MMMM yyyy').format(DateTime.now())).get();
-              try{
-                String CheckIn=snap2['CheckIn'];
-                setState(() {
-                  CheckIn=DateFormat('hh:mm').format(DateTime.now());
-                  //CheckOut=DateFormat('hh:mm').format(DateTime.now());
-                });
-                await FirebaseFirestore.instance.collection("students").doc(widget.userModel.email).collection("Time").doc(DateFormat(' dd MMMM yyyy').format(DateTime.now())).update(
-                    {
-                      'CheckIn':CheckIn,
-                      //'CheckOut':CheckOut
+              if(UserModel.lat!=0){
+                getLocation();
+                QuerySnapshot snapshot=await FirebaseFirestore.instance.collection("students").where('id',isEqualTo: widget.userModel.email).get();
+                DocumentSnapshot snap2=await FirebaseFirestore.instance.collection("students").doc(widget.userModel.email).collection("Time").doc(DateFormat('dd MMMM yyyy').format(DateTime.now())).get();
+                try{
+                  String CheckIn=snap2['CheckIn'];
+                  setState(() {
+                    CheckIn=DateFormat('hh:mm').format(DateTime.now());
+                    //CheckOut=DateFormat('hh:mm').format(DateTime.now());
+                  });
+                  await FirebaseFirestore.instance.collection("students").doc(widget.userModel.email).collection("Time").doc(DateFormat(' dd MMMM yyyy').format(DateTime.now())).update(
+                      {
+                        'CheckIn':CheckIn,
+                        //'CheckOut':CheckOut
+                      });
+                }catch(ex) {
+                  setState(() {
+                    CheckIn = DateFormat('hh:mm').format(DateTime.now());
+                    //CheckOut = DateFormat('hh:mm').format(DateTime.now());
+                  });
+                  await FirebaseFirestore.instance.collection("students").doc(
+                      widget.userModel.email).collection("Time").doc(
+                      DateFormat(' dd MMMM yyyy').format(DateTime.now())).set(
+                      {
+                        'CheckIn': DateFormat('hh:mm').format(DateTime.now()),
+                        'location':location
+                        //'CheckOut': DateFormat('hh:mm').format(DateTime.now())
+                      });
+                }
+              }
+              else{
+                Timer(Duration(seconds: 3), ()async{
+                  getLocation();
+                  QuerySnapshot snapshot=await FirebaseFirestore.instance.collection("students").where('id',isEqualTo: widget.userModel.email).get();
+                  DocumentSnapshot snap2=await FirebaseFirestore.instance.collection("students").doc(widget.userModel.email).collection("Time").doc(DateFormat('dd MMMM yyyy').format(DateTime.now())).get();
+                  try{
+                    String CheckIn=snap2['CheckIn'];
+                    setState(() {
+                      CheckIn=DateFormat('hh:mm').format(DateTime.now());
+                      //CheckOut=DateFormat('hh:mm').format(DateTime.now());
                     });
-              }catch(ex) {
-                setState(() {
-                  CheckIn = DateFormat('hh:mm').format(DateTime.now());
-                  //CheckOut = DateFormat('hh:mm').format(DateTime.now());
-                });
-                await FirebaseFirestore.instance.collection("students").doc(
-                    widget.userModel.email).collection("Time").doc(
-                    DateFormat(' dd MMMM yyyy').format(DateTime.now())).set(
-                    {
-                      'CheckIn': DateFormat('hh:mm').format(DateTime.now()),
-                      //'CheckOut': DateFormat('hh:mm').format(DateTime.now())
+                    await FirebaseFirestore.instance.collection("students").doc(widget.userModel.email).collection("Time").doc(DateFormat(' dd MMMM yyyy').format(DateTime.now())).update(
+                        {
+                          'CheckIn':CheckIn,
+                          //'CheckOut':CheckOut
+                        });
+                  }catch(ex) {
+                    setState(() {
+                      CheckIn = DateFormat('hh:mm').format(DateTime.now());
+                      //CheckOut = DateFormat('hh:mm').format(DateTime.now());
                     });
+                    await FirebaseFirestore.instance.collection("students").doc(
+                        widget.userModel.email).collection("Time").doc(
+                        DateFormat(' dd MMMM yyyy').format(DateTime.now())).set(
+                        {
+                          'CheckIn': DateFormat('hh:mm').format(DateTime.now()),
+                          'location':location
+                          //'CheckOut': DateFormat('hh:mm').format(DateTime.now())
+                        });
+                  }
+                });
               }
   }
 
   checkout()async{
     print(DateFormat('hh:mm').format(DateTime.now()));
-    QuerySnapshot snapshot=await FirebaseFirestore.instance.collection("students").where('id',isEqualTo: widget.userModel.email).get();
-    DocumentSnapshot snap2=await FirebaseFirestore.instance.collection("students").doc(widget.userModel.email).collection("Time").doc(DateFormat('dd MMMM yyyy').format(DateTime.now())).get();
-    try{
-      String CheckOut=snap2['CheckIn'];
-      setState(() {
+    if(UserModel.lat!=0){
+      getLocation();
+      QuerySnapshot snapshot=await FirebaseFirestore.instance.collection("students").where('id',isEqualTo: widget.userModel.email).get();
+      DocumentSnapshot snap2=await FirebaseFirestore.instance.collection("students").doc(widget.userModel.email).collection("Time").doc(DateFormat('dd MMMM yyyy').format(DateTime.now())).get();
+      try{
+        String CheckOut=snap2['CheckIn'];
+        setState(() {
 
-        CheckOut=DateFormat('hh:mm').format(DateTime.now());
-      });
-      await FirebaseFirestore.instance.collection("students").doc(widget.userModel.email).collection("Time").doc(DateFormat(' dd MMMM yyyy').format(DateTime.now())).update(
-          {
-            //'CheckIn':CheckIn,
-            'CheckOut':CheckOut
+          CheckOut=DateFormat('hh:mm').format(DateTime.now());
+        });
+        await FirebaseFirestore.instance.collection("students").doc(widget.userModel.email).collection("Time").doc(DateFormat(' dd MMMM yyyy').format(DateTime.now())).update(
+            {
+              //'CheckIn':CheckIn,
+              'CheckOut':CheckOut
+            });
+      }catch(ex) {
+        setState(() {
+          //CheckIn = DateFormat('hh:mm').format(DateTime.now());
+          CheckOut = DateFormat('hh:mm').format(DateTime.now());
+        });
+        await FirebaseFirestore.instance.collection("students").doc(
+            widget.userModel.email).collection("Time").doc(
+            DateFormat(' dd MMMM yyyy').format(DateTime.now())).set(
+            {
+              'CheckIn': DateFormat('hh:mm').format(DateTime.now()),
+              'CheckOut': DateFormat('hh:mm').format(DateTime.now())
+            });
+      }
+    }else{
+      Timer(Duration(seconds: 3), ()async{
+        getLocation();
+        QuerySnapshot snapshot=await FirebaseFirestore.instance.collection("students").where('id',isEqualTo: widget.userModel.email).get();
+        DocumentSnapshot snap2=await FirebaseFirestore.instance.collection("students").doc(widget.userModel.email).collection("Time").doc(DateFormat('dd MMMM yyyy').format(DateTime.now())).get();
+        try{
+          String CheckOut=snap2['CheckIn'];
+          setState(() {
+
+            CheckOut=DateFormat('hh:mm').format(DateTime.now());
           });
-    }catch(ex) {
-      setState(() {
-        //CheckIn = DateFormat('hh:mm').format(DateTime.now());
-        CheckOut = DateFormat('hh:mm').format(DateTime.now());
-      });
-      await FirebaseFirestore.instance.collection("students").doc(
-          widget.userModel.email).collection("Time").doc(
-          DateFormat(' dd MMMM yyyy').format(DateTime.now())).set(
-          {
-            'CheckIn': DateFormat('hh:mm').format(DateTime.now()),
-            'CheckOut': DateFormat('hh:mm').format(DateTime.now())
+          await FirebaseFirestore.instance.collection("students").doc(widget.userModel.email).collection("Time").doc(DateFormat(' dd MMMM yyyy').format(DateTime.now())).update(
+              {
+                //'CheckIn':CheckIn,
+                'CheckOut':CheckOut
+              });
+        }catch(ex) {
+          setState(() {
+            //CheckIn = DateFormat('hh:mm').format(DateTime.now());
+            CheckOut = DateFormat('hh:mm').format(DateTime.now());
           });
+          await FirebaseFirestore.instance.collection("students").doc(
+              widget.userModel.email).collection("Time").doc(
+              DateFormat(' dd MMMM yyyy').format(DateTime.now())).set(
+              {
+                'CheckIn': DateFormat('hh:mm').format(DateTime.now()),
+                'CheckOut': DateFormat('hh:mm').format(DateTime.now())
+              });
+        }
+      });
     }
+
+
   }
 }

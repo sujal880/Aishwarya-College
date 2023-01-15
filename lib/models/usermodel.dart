@@ -5,6 +5,8 @@ class UserModel{
   String? phone;
   String? course;
   String? profilepic;
+  static double lat=0;
+  static double long=0;
 
   UserModel({this.uid,this.fullname,this.email,this.phone,this.course,this.profilepic});
   UserModel.fromMap(Map<String,dynamic>map){
