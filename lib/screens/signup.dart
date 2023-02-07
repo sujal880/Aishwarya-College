@@ -234,7 +234,7 @@ class _SignUpState extends State<SignUp> {
       keyboardType: KeyboardType,
       decoration: InputDecoration(
         hintText: hint,
-        contentPadding: EdgeInsets.only(top: 10.sp,),
+        contentPadding: EdgeInsets.only(top: 12.sp,),
         prefixIcon: Icon,
         border: InputBorder.none,
         suffixIcon: sIcon

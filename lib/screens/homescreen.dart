@@ -125,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(14),
                       ),
-                      child: Image.network('https://scontent.fjai2-3.fna.fbcdn.net/v/t1.6435-9/107800325_100688835066344_5964871429207518037_n.png?_nc_cat=106&ccb=1-7&_nc_sid=e3f864&_nc_ohc=ikMDYVu-KiIAX-CqldT&_nc_ht=scontent.fjai2-3.fna&oh=00_AfA2Nxx2jqn7naQEe8ury8pKr_C6yxpvTnCjMf1XLndJdA&oe=63C62F4D',
+                      child: Image.network('https://assets.telegraphindia.com/telegraph/2022/Mar/1646209810_science-scholarship1.jpg',
                           fit: BoxFit.fill),
                     ),
                   ),
@@ -265,7 +265,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         SizedBox(width: 20,),
                         Container(
                           height: 70,
-                          width: 217,
+                          width: 220,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
                             gradient: LinearGradient(
@@ -274,7 +274,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Row(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(left: 15),
+                                padding: const EdgeInsets.only(left: 11),
                                 child: CircleAvatar(
                                   radius: 25,
                                   child: Image.network('https://github.com/sujal880/College_App/blob/master/assets/images/external.png?raw=true',
@@ -282,7 +282,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   backgroundColor: Colors.black12,
                                 ),
                               ),
-                              SizedBox(width: 8),
+                              SizedBox(width: 5),
                               Text('External Links',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold, fontSize: 22))
@@ -363,9 +363,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             Padding(
                               padding: const EdgeInsetsDirectional.only(
                                   top: 20, start: 20),
-                              child: Text('Arts',
+                              child: Text('BCA Ist\nYear',
                                   style: TextStyle(
-                                      fontWeight: FontWeight.bold, fontSize: 30)),
+                                      fontWeight: FontWeight.bold, fontSize:30)),
                             ),
                           ]),
                           Padding(
@@ -374,28 +374,29 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Stack(children: [
                               Container(
                                 clipBehavior: Clip.antiAlias,
-                                height: 100,
-                                width: 100,
+                                height: 108,
+                                width: 108,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(12),
                                 ),
-                                child: Image.network("https://iotcdn.oss-ap-southeast-1.aliyuncs.com/subjects-in-arts.jpg",fit: BoxFit.cover,),
+                                //child: Image.network("https://iotcdn.oss-ap-southeast-1.aliyuncs.com/subjects-in-arts.jpg",fit: BoxFit.cover,),
+                                child:Image.network("https://m.media-amazon.com/images/I/717-4TXKe9L.png")
                               ),
                               Padding(
                                 padding: const EdgeInsetsDirectional.only(
-                                    start: 20, top: 90),
+                                    start: 6.0, top: 98),
                                 child: Stack(children: [
                                   Container(
                                     height: 20,
-                                    width: 60,
+                                    width: 95,
                                     decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(12),
+                                        borderRadius: BorderRadius.circular(6),
                                         color: Colors.green),
                                   ),
                                   Padding(
                                     padding: const EdgeInsetsDirectional.only(
-                                        start: 15, top: 2),
-                                    child: Text('Arts',
+                                        start: 0, top: 2),
+                                    child: Text('BCA Ist Year',
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.white)),
@@ -433,7 +434,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Padding(
                           padding: const EdgeInsetsDirectional.only(
                               top: 20, start: 20),
-                          child: Text('Commerce',
+                          child: Text('BCA IInd\nYear',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 30)),
                         ),
@@ -443,30 +444,31 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Stack(children: [
                             Container(
                                 clipBehavior: Clip.antiAlias,
-                                height: 100,
-                                width: 100,
+                                height: 105,
+                                width: 105,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(12),
                                 ),
-                                child:Image.network("https://www.edumilestones.com/blog/images/commerce-subjects-11th-class.png",fit: BoxFit.fill,)
+                                //child:Image.network("https://www.edumilestones.com/blog/images/commerce-subjects-11th-class.png",fit: BoxFit.fill,)
+                                child:Image.network("https://technoindiauniversity.ac.in/ComputerApplication/images/school-of-computer-application1.jpg",fit: BoxFit.fill,)
                             ),
                             Padding(
                               padding: const EdgeInsetsDirectional.only(
-                                  start: 23, top: 90),
+                                  start: 4, top: 95),
                               child: Stack(children: [
                                 Container(
                                   height: 20,
-                                  width: 60,
+                                  width: 97,
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(12),
+                                      borderRadius: BorderRadius.circular(6),
                                       color: Colors.green),
                                 ),
                                 Padding(
                                   padding: const EdgeInsetsDirectional.only(
-                                      start: 5, top: 4),
-                                  child: Text('Commerce',
+                                      start: 0, top: 2),
+                                  child: Text('BCA IInd Year',
                                       style: TextStyle(
-                                          fontSize: 10,
+                                          fontSize: 14,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white)),
                                 )
@@ -502,7 +504,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Padding(
                           padding: const EdgeInsetsDirectional.only(
                               top: 20, start: 20),
-                          child: Text('Science',
+                          child: Text('BCA IIIrd\nYear',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 30)),
                         ),
@@ -512,31 +514,31 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Stack(children: [
                             Container(
                               clipBehavior: Clip.antiAlias,
-                              height: 100,
-                              width: 100,
+                              height: 105,
+                              width: 105,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12),
                               ),
-                              child: Image.network("https://img.freepik.com/free-vector/hand-drawn-science-education-background_23-2148499325.jpg?w=1060&t=st=1671340333~exp=1671340933~hmac=e2501597eaaa4d4405e7efef32182cad255abc47149c38b4940c7ee5c25ff79f"
-                                ,fit: BoxFit.fill,),
+                              //child: Image.network("https://img.freepik.com/free-vector/hand-drawn-science-education-background_23-2148499325.jpg?w=1060&t=st=1671340333~exp=1671340933~hmac=e2501597eaaa4d4405e7efef32182cad255abc47149c38b4940c7ee5c25ff79f",fit: BoxFit.fill,),
+                              child: Image.network("https://assets.telegraphindia.com/telegraph/2022/Mar/1647929416_resized-pic25.jpg",fit: BoxFit.fill,),
                             ),
                             Padding(
                               padding: const EdgeInsetsDirectional.only(
-                                  start: 23, top: 90),
+                                  start: 4, top: 93),
                               child: Stack(children: [
                                 Container(
                                   height: 20,
-                                  width: 60,
+                                  width: 95,
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(12),
+                                      borderRadius: BorderRadius.circular(6),
                                       color: Colors.green),
                                 ),
                                 Padding(
                                   padding: const EdgeInsetsDirectional.only(
-                                      start: 13, top: 5),
-                                  child: Text('Science',
+                                      start: 0, top: 2),
+                                  child: Text('BCA IIrd Year',
                                       style: TextStyle(
-                                          fontSize: 10,
+                                          fontSize: 14,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white)),
                                 )
@@ -548,7 +550,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         BottomDetailPadding()
                       ]),
                     ),
-                    SizedBox(width: 20),
+                    /*SizedBox(width: 20),
                     Card(
                       elevation: 15,
                       shape: RoundedRectangleBorder(
@@ -618,7 +620,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         BottomDetail(),
                         BottomDetailPadding(),
                       ]),
-                    ),
+                    ),*/
                   ],
                 ),
               ),
