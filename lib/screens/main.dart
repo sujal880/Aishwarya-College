@@ -1,7 +1,5 @@
-
 import 'package:aishwarya_college/screens/login.dart';
-import 'package:aishwarya_college/screens/signup.dart';
-import 'package:aishwarya_college/screens/splash_screen.dart';
+import 'package:aishwarya_college/services/notification_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +15,7 @@ var uuid=Uuid();
 void main()async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await NotificationService.initialize();
   await GetStorage.init();
   final User firebaseuser;
   UserModel? thisUserModel;

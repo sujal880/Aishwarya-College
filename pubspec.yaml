@@ -57,6 +57,7 @@ dependencies:
   slide_to_act: ^2.0.1
   geocoding: ^2.0.5
   location: ^4.4.0
+  firebase_messaging: ^14.2.5
 
 flutter_icons:
   android: "ic_launcher"

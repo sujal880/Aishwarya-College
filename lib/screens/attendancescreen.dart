@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:math';
-
 import 'package:aishwarya_college/services/location_services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -17,6 +15,8 @@ class AttendanceScreen extends StatefulWidget {
 }
 
 class _AttendanceScreenState extends State<AttendanceScreen> {
+  bool isButtonActive=true;
+  bool isButton1Active=true;
   String CheckIn="--/--";
   String CheckOut="--/--";
   String location="";
@@ -177,15 +177,26 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                         borderRadius: BorderRadius.circular(14)
                       ),
                       child: GestureDetector(
-                        onTap: (){
+                        onTap:isButtonActive? (){
                           checkIn();
-                        },
-                        child: Container(
+                          setState(() {
+                            isButtonActive=false;
+                          });
+                        } : null,
+                        child: isButtonActive? Container(
                           height: 50,
                           width: 150,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
                             color: Colors.blue
+                          ),
+                          child: Center(child: Text("Check In",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white),)),
+                        ): Container(
+                          height: 50,
+                          width: 150,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              color: Colors.grey
                           ),
                           child: Center(child: Text("Check In",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white),)),
                         ),
@@ -198,15 +209,26 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                           borderRadius: BorderRadius.circular(14)
                       ),
                       child: GestureDetector(
-                        onTap: (){
+                        onTap:isButton1Active?(){
                           checkout();
-                        },
-                        child: Container(
+                          setState(() {
+                            isButton1Active=false;
+                          });
+                        } : null,
+                        child:isButton1Active? Container(
                           height: 50,
                           width: 150,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12),
                               color: Colors.blue
+                          ),
+                          child: Center(child: Text("Check Out",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white),)),
+                        ): Container(
+                          height: 50,
+                          width: 150,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              color: Colors.grey
                           ),
                           child: Center(child: Text("Check Out",style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.white),)),
                         ),
@@ -218,7 +240,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                     margin: EdgeInsets.only(top:50),
                     child:Text('You have completed this day!',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),)
                 ),
-                location !="" ? Text("Location"+location) : SizedBox()
+                location !="" ? Text("Location") : SizedBox()
               ],
             ),
           ),
