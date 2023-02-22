@@ -25,7 +25,19 @@ class _ForgotPasswordState extends State<ForgotPassword> {
          ],
         );
       });
-    });
+    }).onError((error, stackTrace){
+      showDialog(context: context, builder:(BuildContext context){
+        return AlertDialog(
+          title: Text(error.toString()),
+          actions: [
+            TextButton(onPressed: (){
+              Navigator.pop(context);
+            }, child: Text("Ok"))
+          ],
+        );
+      });
+    })
+    ;
   }
   @override
   Widget build(BuildContext context) {

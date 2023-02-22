@@ -1,7 +1,9 @@
 import 'dart:developer';
 
 import 'package:aishwarya_college/screens/attendancescreen.dart';
+import 'package:aishwarya_college/screens/external_links.dart';
 import 'package:aishwarya_college/screens/lecture.dart';
+import 'package:aishwarya_college/screens/lectures.dart';
 import 'package:aishwarya_college/screens/login.dart';
 import 'package:aishwarya_college/screens/profile_page.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -11,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../models/usermodel.dart';
+import 'e_library.dart';
 class HomeScreen extends StatefulWidget {
   final UserModel userModel;
   final User firebaseuser;
@@ -206,90 +209,103 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         SizedBox(width: 20,),
                         //For Lecture
-                        Container(
-                          height: 70,
-                          width: 200,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            gradient:  LinearGradient(
-                                colors: [Colors.purpleAccent, Colors.white]),
-                          ),
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 15),
-                                child: CircleAvatar(
-                                  child: Icon(Icons.tv, size: 35, color: Colors.black),
-                                  backgroundColor: Colors.black12,
-                                  radius: 25,
+                        GestureDetector(
+                          onTap: (){
+                            Navigator.push(context,MaterialPageRoute(builder: (context)=>Lectures()));
+                          },
+                          child: Container(
+                            height: 70,
+                            width: 200,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              gradient:  LinearGradient(
+                                  colors: [Colors.purpleAccent, Colors.white]),
+                            ),
+                            child: Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 15),
+                                  child: CircleAvatar(
+                                    child: Icon(Icons.tv, size: 35, color: Colors.black),
+                                    backgroundColor: Colors.black12,
+                                    radius: 25,
+                                  ),
                                 ),
-                              ),
-                              SizedBox(width: 8),
-                              Text('Lectures',
-                                  style: TextStyle(
-                                      fontSize: 22, fontWeight: FontWeight.bold))
-                            ],
+                                SizedBox(width: 8),
+                                Text('Lectures',
+                                    style: TextStyle(
+                                        fontSize: 22, fontWeight: FontWeight.bold))
+                              ],
+                            ),
                           ),
                         ),
                         SizedBox(width: 20,),
                         //For E-Libray
-                        Container(
-                          height: 70,
-                          width: 200,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            gradient: LinearGradient(
-                                colors: [Colors.yellowAccent, Colors.white]),
-                          ),
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10),
-                                child: CircleAvatar(
-                                  child: Icon(Icons.menu_book_sharp,
-                                      color: Colors.black, size: 35),
-                                  backgroundColor: Colors.black12,
-                                  radius: 25,
-                                ),
+                        GestureDetector(
+                          onTap: (){
+                            Navigator.push(context,MaterialPageRoute(builder: (context)=>E_Library()));
+                          },
+                          child: Container(
+                            height: 70,
+                            width: 200,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              gradient: LinearGradient(
+                                  colors: [Colors.yellowAccent, Colors.white]),
+                            ),
+                            child: Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: CircleAvatar(
+                                    child: Icon(Icons.menu_book_sharp,
+                                        color: Colors.black, size: 35),
+                                    backgroundColor: Colors.black12,
+                                    radius: 25,
+                                  ),
 
-                              ),
-                              SizedBox(width: 8),
-                              Text('E-Library',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold, fontSize: 22))
-                            ],
+                                ),
+                                SizedBox(width: 8),
+                                Text('E-Library',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold, fontSize: 22))
+                              ],
+                            ),
                           ),
                         ),
                         //For Extenal Links
                         SizedBox(width: 20,),
-                        Container(
-                          height: 70,
-                          width: 220,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            gradient: LinearGradient(
-                                colors: [Colors.greenAccent, Colors.white]),
-                          ),
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 11),
-                                child: CircleAvatar(
-                                  radius: 25,
-                                  child: Image.network('https://github.com/sujal880/College_App/blob/master/assets/images/external.png?raw=true',
-                                      height: 34,color: Colors.black),
-                                  backgroundColor: Colors.black12,
+                        GestureDetector(
+                          onTap: (){
+                            Navigator.push(context,MaterialPageRoute(builder: (context)=>ExternalLinks()));
+                          },
+                          child: Container(
+                            height: 70,
+                            width: 220,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              gradient: LinearGradient(
+                                  colors: [Colors.greenAccent, Colors.white]),
+                            ),
+                            child: Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 11),
+                                  child: CircleAvatar(
+                                    radius: 25,
+                                    child: Image.network('https://github.com/sujal880/College_App/blob/master/assets/images/external.png?raw=true',
+                                        height: 34,color: Colors.black),
+                                    backgroundColor: Colors.black12,
+                                  ),
                                 ),
-                              ),
-                              SizedBox(width: 5),
-                              Text('External Links',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold, fontSize: 22))
-                            ],
+                                SizedBox(width: 5),
+                                Text('External Links',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold, fontSize: 22))
+                              ],
+                            ),
                           ),
                         ),
-                        SizedBox(width: 15,)
-
                       ],
                     ),
                   )
