@@ -9,7 +9,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../models/usermodel.dart';
 class HomeScreen extends StatefulWidget {

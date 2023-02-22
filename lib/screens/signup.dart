@@ -1,3 +1,4 @@
+import 'package:aishwarya_college/Widgets/uihelper.dart';
 import 'package:aishwarya_college/models/usermodel.dart';
 import 'package:aishwarya_college/screens/login.dart';
 import 'package:aishwarya_college/screens/user_profile_page.dart';
@@ -23,6 +24,10 @@ class _SignUpState extends State<SignUp> {
     String password=passwordController.text.trim();
     String phone=phoneController.text.trim();
     String course=coursesController.text.trim();
+    emailController.clear();
+    passwordController.clear();
+    phoneController.clear();
+    coursesController.clear();
     if(email=="" || password=="" || phone=="" || course==""){
       showDialog(context: context, builder: (BuildContext context){
         return AlertDialog(
@@ -36,6 +41,7 @@ class _SignUpState extends State<SignUp> {
       });
     }
     else{
+      UiHelper.ShowIndicator(context);
       UserCredential ? userCredential;
       try{
         userCredential=await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
