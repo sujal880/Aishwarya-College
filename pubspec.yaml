@@ -58,6 +58,12 @@ dependencies:
   geocoding: ^2.0.5
   location: ^4.4.0
   firebase_messaging: ^14.2.5
+  video_player: ^2.5.1
+  url_launcher: ^6.1.9
+  dialog_flowtter: ^0.3.3
+  lottie: ^2.2.0
+  http: ^0.13.5
+
 
 flutter_icons:
   android: "ic_launcher"
@@ -93,9 +99,9 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/images/
+    - assets/animation/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

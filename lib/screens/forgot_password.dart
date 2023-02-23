@@ -1,3 +1,4 @@
+import 'package:aishwarya_college/Widgets/uihelper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,21 +15,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   Forgot()async{
     String email=emailController.text.trim();
     emailController.clear();
-    FirebaseAuth.instance.sendPasswordResetEmail(email: email).then((value){
+    if(email==""){
       showDialog(context: context, builder:(BuildContext context){
         return AlertDialog(
-         title: Text("We Have Sent You A Mail To Reset Password!!"),
-         actions: [
-           TextButton(onPressed: (){
-             Navigator.pop(context);
-           }, child: Text("Ok"))
-         ],
-        );
-      });
-    }).onError((error, stackTrace){
-      showDialog(context: context, builder:(BuildContext context){
-        return AlertDialog(
-          title: Text(error.toString()),
+          title: Text("Enter Required Details"),
           actions: [
             TextButton(onPressed: (){
               Navigator.pop(context);
@@ -36,8 +26,32 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           ],
         );
       });
-    })
-    ;
+    }
+    else{
+      FirebaseAuth.instance.sendPasswordResetEmail(email: email).then((value){
+        showDialog(context: context, builder:(BuildContext context){
+          return AlertDialog(
+            title: Text("We Have Sent You A Mail To Reset Password!!"),
+            actions: [
+              TextButton(onPressed: (){
+                Navigator.pop(context);
+              }, child: Text("Ok"))
+            ],
+          );
+        });
+      }).onError((error, stackTrace){
+        showDialog(context: context, builder:(BuildContext context){
+          return AlertDialog(
+            title: Text(error.toString()),
+            actions: [
+              TextButton(onPressed: (){
+                Navigator.pop(context);
+              }, child: Text("Ok"))
+            ],
+          );
+        });
+      });
+    }
   }
   @override
   Widget build(BuildContext context) {

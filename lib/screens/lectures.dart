@@ -1,5 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+
+import '../lectures/c_programming.dart';
 class Lectures extends StatefulWidget {
   const Lectures({Key? key}) : super(key: key);
 
@@ -47,32 +51,43 @@ class _LecturesState extends State<Lectures> {
                   child: ScaleAnimation(
                     duration: Duration(milliseconds: 1500),
                     curve: Curves.fastLinearToSlowEaseIn,
-                    child: Container(
-                      margin: EdgeInsets.only(bottom: _w / 20),
-                      height: _w / 4,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
-                            blurRadius: 40,
-                            spreadRadius: 10,
-                          ),
-                        ],
-                      ),
-                      child: Row(
-                        children: [
-                          SizedBox(width: 20,),
-                          CircleAvatar(
-                            radius:30,
-                            backgroundColor: Colors.greenAccent,
-                          ),
-                          SizedBox(width: 10,),
-                          Text(AceArr[index]['tag']!,style: TextStyle(
-                              fontSize: 18,fontWeight: FontWeight.bold,color: Colors.black
-                          ),)
-                        ],
+                    child: GestureDetector(onTap: (){
+                      Navigator.push(context,MaterialPageRoute(builder: (context){
+                        if(index==0){
+                          return C();
+                        }
+                        else{
+                          return Text("No Content Found!!");
+                        }
+                      }));
+                    },
+                      child: Container(
+                        margin: EdgeInsets.only(bottom: _w / 20),
+                        height: _w / 4,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.1),
+                              blurRadius: 40,
+                              spreadRadius: 10,
+                            ),
+                          ],
+                        ),
+                        child: Row(
+                          children: [
+                            SizedBox(width: 20,),
+                            CircleAvatar(
+                              radius:30,
+                              backgroundColor: Colors.greenAccent,
+                            ),
+                            SizedBox(width: 10,),
+                            Text(AceArr[index]['tag']!,style: TextStyle(
+                                fontSize: 18,fontWeight: FontWeight.bold,color: Colors.black
+                            ),)
+                          ],
+                        ),
                       ),
                     ),
                   ),

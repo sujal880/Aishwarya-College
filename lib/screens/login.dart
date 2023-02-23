@@ -1,3 +1,4 @@
+import 'package:aishwarya_college/Widgets/uihelper.dart';
 import 'package:aishwarya_college/models/usermodel.dart';
 import 'package:aishwarya_college/screens/signup.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -23,6 +24,8 @@ class _SignUpState extends State<LogIn> {
   void CheckValues() async {
     String email = emailController.text.trim();
     String password = passwordController.text.trim();
+    emailController.clear();
+    passwordController.clear();
     if (email == "" || password == "") {
       showDialog(
           context: context,
@@ -39,6 +42,7 @@ class _SignUpState extends State<LogIn> {
             );
           });
     } else {
+      UiHelper.ShowIndicator(context);
       UserCredential? userCredential;
       try {
         userCredential = await FirebaseAuth.instance
