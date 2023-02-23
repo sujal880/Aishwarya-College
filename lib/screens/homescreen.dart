@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:aishwarya_college/screens/attendancescreen.dart';
-import 'package:aishwarya_college/screens/chatscreen.dart';
 import 'package:aishwarya_college/screens/external_links.dart';
 import 'package:aishwarya_college/screens/lecture.dart';
 import 'package:aishwarya_college/screens/lectures.dart';
@@ -37,17 +36,17 @@ class _HomeScreenState extends State<HomeScreen> {
             IconButton(onPressed: () {}, icon: Icon(Icons.notification_add))
           ],
         ),
-        floatingActionButton: ElevatedButton.icon(
-            onPressed: () {
-              Navigator.push(context,MaterialPageRoute(builder: (context)=>ChatScreen()));
-            },
-            style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12)),
-                backgroundColor: Colors.green,
-                elevation: 8),
-            icon: Icon(Icons.chat),
-            label: Text("Ask Doubts")),
+        // floatingActionButton: ElevatedButton.icon(
+        //     onPressed: () {
+        //       Navigator.push(context,MaterialPageRoute(builder: (context)=>ChatScreen()));
+        //     },
+        //     style: ElevatedButton.styleFrom(
+        //         shape: RoundedRectangleBorder(
+        //             borderRadius: BorderRadius.circular(12)),
+        //         backgroundColor: Colors.green,
+        //         elevation: 8),
+        //     icon: Icon(Icons.chat),
+        //     label: Text("Ask Doubts")),
         drawer: Drawer(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
