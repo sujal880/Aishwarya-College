@@ -1,9 +1,7 @@
 import 'package:aishwarya_college/models/usermodel.dart';
 import 'package:aishwarya_college/screens/edit_profile_page.dart';
-import 'package:aishwarya_college/screens/homescreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../models/usermodel.dart';
 class ProfileScreen extends StatefulWidget {

@@ -410,7 +410,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                   Padding(
                                     padding: const EdgeInsetsDirectional.only(
-                                        start: 0, top: 2),
+                                        start: 3, top: 1.5),
                                     child: Text('BCA Ist Year',
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
@@ -480,10 +480,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 Padding(
                                   padding: const EdgeInsetsDirectional.only(
-                                      start: 0, top: 2),
+                                      start: 1, top: 1.5),
                                   child: Text('BCA IInd Year',
                                       style: TextStyle(
-                                          fontSize: 14,
+                                          fontSize: 13.5,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white)),
                                 )
@@ -550,7 +550,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                                 Padding(
                                   padding: const EdgeInsetsDirectional.only(
-                                      start: 0, top: 2),
+                                      start: 0.5, top: 1.5),
                                   child: Text('BCA IIrd Year',
                                       style: TextStyle(
                                           fontSize: 14,

@@ -10,14 +10,14 @@ class Lectures extends StatefulWidget {
 class _LecturesState extends State<Lectures> {
   var AceArr=[
     {'tag':'BCA 1st : C Programming'},
-    {'tag':'BCA 2nd : CSA'},
     {'tag':'BCA 1st : FOC'},
-    {'tag':'BCA 3rd : JAVA'},
-    {'tag':'BCA 1st : Internet Technology'},
-    {'tag':'BCA 3rd : ASP.NET'},
-    {'tag':'BCA 3rd : SAD'},
-    {'tag':'BCA 2nd : C++'},
     {'tag':'BCA 1st : Digital Electronics'},
+    {'tag':'BCA 1st : Internet Technology'},
+    {'tag':'BCA 2nd : C++'},
+    {'tag':'BCA 2nd : CSA'},
+    {'tag':'BCA 3rd : JAVA'},
+    {'tag':'BCA 3rd : ASP.NET'},
+    {'tag':'BCA 3rd : SAD'}
 
   ];
   @override
@@ -82,6 +82,6 @@ class _LecturesState extends State<Lectures> {
           ),
         ),
       ),
-    );;
+    );
   }
 }

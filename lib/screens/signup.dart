@@ -18,6 +18,7 @@ class _SignUpState extends State<SignUp> {
   TextEditingController passwordController=TextEditingController();
   TextEditingController phoneController=TextEditingController();
   TextEditingController coursesController=TextEditingController();
+  bool _obscureSignUpText=true;
 
   void CheckValues()async{
     String email=emailController.text.trim();
@@ -72,14 +73,14 @@ class _SignUpState extends State<SignUp> {
     return SafeArea(
       top: true,
       child: Scaffold(
-          resizeToAvoidBottomInset: false,
-          body:Container(
+
+          body: Container(
             decoration: BoxDecoration(
                 gradient: LinearGradient(
                     colors: [
                       Colors.blue,
                       Colors.white,
-                    ],begin: Alignment.topCenter,
+                    ], begin: Alignment.topCenter,
                     end: Alignment.bottomCenter
                 )
             ),
@@ -89,28 +90,30 @@ class _SignUpState extends State<SignUp> {
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: Stack(
-                      children:[
+                      children: [
                         Card(
-                          elevation:16,
-                          shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                          elevation: 16,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16)),
                           child: Container(
                             //height: MediaQuery.of(context).size.height/1.68,
                             height: 380.h,
                             width: 400.w,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15.r),
-                                color:Colors.white
+                                color: Colors.white
                             ),
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.only(top:40),
+                          padding: const EdgeInsetsDirectional.only(top: 40),
                           child: Container(
                               alignment: Alignment.center,
-                              child: Text('Sign In',style: TextStyle(fontSize: 22.sp))),
+                              child: Text('Sign In', style: TextStyle(
+                                  fontSize: 22.sp))),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.only(top:90),
+                          padding: const EdgeInsetsDirectional.only(top: 90),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -122,15 +125,15 @@ class _SignUpState extends State<SignUp> {
                                     color: Colors.black12
                                 ),
                                 child: getTextFile(hint: 'Email',
-                                       KeyboardType: TextInputType.text,
-                                       Controller: emailController,
-                                       Icon: Icon(Icons.email)),
+                                    KeyboardType: TextInputType.text,
+                                    Controller: emailController,
+                                    Icon: Icon(Icons.email)),
                               ),
                             ],
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.only(top:150),
+                          padding: const EdgeInsetsDirectional.only(top: 150),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -143,18 +146,28 @@ class _SignUpState extends State<SignUp> {
                                     color: Colors.black12
                                 ),
                                 child: getTextFile(hint: 'Password',
-                                    KeyboardType: TextInputType.text,
-                                    Controller: passwordController,
-                                    Icon: Icon(Icons.lock),
-                                  sIcon: Icon(Icons.remove_red_eye)
-                                  
+                                  KeyboardType: TextInputType.text,
+                                  Controller: passwordController,
+                                  obscureText: _obscureSignUpText,
+                                  Icon: Icon(Icons.lock),
+                                  sIcon: GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          _obscureSignUpText=!_obscureSignUpText;
+                                        });
+                                      },
+                                      child: Icon(
+                                          _obscureSignUpText == true ? Icons
+                                              .visibility : Icons
+                                              .visibility_off)
+                                  ),
                                 ),
                               ),
                             ],
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.only(top:210),
+                          padding: const EdgeInsetsDirectional.only(top: 210),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -166,7 +179,7 @@ class _SignUpState extends State<SignUp> {
                                     color: Colors.black12
                                 ),
                                 child: getTextFile(hint: 'Phone',
-                                     KeyboardType: TextInputType.phone,
+                                    KeyboardType: TextInputType.phone,
                                     Controller: phoneController,
                                     Icon: Icon(Icons.phone)),
                               ),
@@ -174,7 +187,7 @@ class _SignUpState extends State<SignUp> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.only(top:270),
+                          padding: const EdgeInsetsDirectional.only(top: 270),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -185,16 +198,17 @@ class _SignUpState extends State<SignUp> {
                                     borderRadius: BorderRadius.circular(8),
                                     color: Colors.black12
                                 ),
-                                child:getTextFile(hint: 'Course',
+                                child: getTextFile(hint: 'Course',
                                     KeyboardType: TextInputType.text,
                                     Controller: coursesController,
                                     Icon: Icon(Icons.school)),
+
                               ),
                             ],
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsetsDirectional.only(top:350),
+                          padding: const EdgeInsetsDirectional.only(top: 350),
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
@@ -202,13 +216,22 @@ class _SignUpState extends State<SignUp> {
                                 SizedBox(
                                     height: 40.h,
                                     width: 130.w,
-                                    child: ElevatedButton(onPressed: ()async{
+                                    child: ElevatedButton(onPressed: () async {
                                       CheckValues();
-                                    }, child: Text('Sign Up'),style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),backgroundColor: Colors.blue),)),
+                                    },
+                                      child: Text('Sign Up'),
+                                      style: ElevatedButton.styleFrom(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius
+                                                  .circular(8)),
+                                          backgroundColor: Colors.blue),)),
                                 SizedBox(width: 45.h),
-                                TextButton(onPressed: (){
-                                  Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>LogIn()));
-                                }, child: Text("Sign In",style: TextStyle(fontSize: 18),))
+                                TextButton(onPressed: () {
+                                  Navigator.pushReplacement(context,
+                                      MaterialPageRoute(
+                                          builder: (context) => LogIn()));
+                                }, child: Text(
+                                  "Sign In", style: TextStyle(fontSize: 18),))
                               ]
                           ),
 
@@ -222,30 +245,21 @@ class _SignUpState extends State<SignUp> {
       ),
     );
   }
-  /*TextField(
-                                  controller: emailController,
-                                  keyboardType: TextInputType.text,
-                                  decoration: InputDecoration(
-                                      hintText: 'Email',
-                                      prefixIcon: Icon(Icons.person),
-                                      border: InputBorder.none
-                                  ),
-                                ),*/
 
   Widget getTextFile(
-  {required String hint,required TextEditingController Controller,required Icon Icon,sIcon,required KeyboardType })
+  {required String hint,required TextEditingController Controller,required Icon Icon,sIcon,required KeyboardType,bool? obscureText })
     {
     return TextField(
       controller: Controller,
       keyboardType: KeyboardType,
+      obscureText: obscureText==true,
       decoration: InputDecoration(
         hintText: hint,
-        contentPadding: EdgeInsets.only(top: 12.sp,),
+        contentPadding: EdgeInsets.only(top: 13.5.sp),
         prefixIcon: Icon,
         border: InputBorder.none,
         suffixIcon: sIcon
       ),
-
 
     );
   }

@@ -18,6 +18,7 @@ class LogIn extends StatefulWidget {
 class _SignUpState extends State<LogIn> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  bool _obsucreText=true;
 
   void CheckValues() async {
     String email = emailController.text.trim();
@@ -152,8 +153,17 @@ class _SignUpState extends State<LogIn> {
                             decoration: InputDecoration(
                                 hintText: 'Password',
                                 prefixIcon: Icon(Icons.lock),
-                                suffixIcon: Icon(Icons.remove_red_eye),
+                                suffixIcon: GestureDetector(
+                                  onTap: (){
+                                    setState(() {
+                                      _obsucreText=!_obsucreText;
+                                    });
+                                  },
+                                  child: Icon(_obsucreText?Icons.visibility:
+                                  Icons.visibility_off),
+                                ),
                                 border: InputBorder.none),
+                            obscureText: _obsucreText,
                           ),
                         ),
                       ],
