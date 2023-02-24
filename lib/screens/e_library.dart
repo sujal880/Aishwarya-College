@@ -7,7 +7,7 @@ class E_Library extends StatelessWidget {
   var ElArr=[
     {'tag':'Best open Acceess Resources'},
     {'tag':'International E-Book Platforms'},
-    {'tag':'DELNET - Developing Library\nNetwork'},
+    //{'tag':'DELNET - Developing Library\nNetwork'},
   ];
   @override
   Widget build(BuildContext context) {
