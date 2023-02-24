@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../models/usermodel.dart';
+import 'chatscreen.dart';
 import 'e_library.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -36,17 +37,17 @@ class _HomeScreenState extends State<HomeScreen> {
             IconButton(onPressed: () {}, icon: Icon(Icons.notification_add))
           ],
         ),
-        // floatingActionButton: ElevatedButton.icon(
-        //     onPressed: () {
-        //       Navigator.push(context,MaterialPageRoute(builder: (context)=>ChatScreen()));
-        //     },
-        //     style: ElevatedButton.styleFrom(
-        //         shape: RoundedRectangleBorder(
-        //             borderRadius: BorderRadius.circular(12)),
-        //         backgroundColor: Colors.green,
-        //         elevation: 8),
-        //     icon: Icon(Icons.chat),
-        //     label: Text("Ask Doubts")),
+        floatingActionButton: ElevatedButton.icon(
+            onPressed: () {
+              Navigator.push(context,MaterialPageRoute(builder: (context)=>ChatScreen()));
+            },
+            style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12)),
+                backgroundColor: Colors.green,
+                elevation: 8),
+            icon: Icon(Icons.chat),
+            label: Text("Ask Doubts")),
         drawer: Drawer(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
