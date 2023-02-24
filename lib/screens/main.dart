@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(builder: (context,child){
       return MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
+        title: 'Aishwarya College',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
@@ -67,10 +67,10 @@ class MyAppLoggedIn extends StatelessWidget{
   MyAppLoggedIn({required this.userModel,required this.firebaseuser});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp(title: "Aishwarya College",
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          primarySwatch: Colors.blue
+          primarySwatch: Colors.blue,
       ),
       home: Bottom(userModel: userModel,firebaseuser: firebaseuser),
     );

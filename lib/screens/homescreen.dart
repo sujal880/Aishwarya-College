@@ -13,16 +13,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../models/usermodel.dart';
+import 'chatscreen.dart';
 import 'e_library.dart';
+
 class HomeScreen extends StatefulWidget {
   final UserModel userModel;
   final User firebaseuser;
-  HomeScreen({required this.userModel,required this.firebaseuser});
+  HomeScreen({required this.userModel, required this.firebaseuser});
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 class _HomeScreenState extends State<HomeScreen> {
-  var Thorphy ="https://cdn-icons-png.flaticon.com/512/806/806129.png";
+  var Thorphy = "https://cdn-icons-png.flaticon.com/512/806/806129.png";
+  List<Map<String, dynamic>> messages = [];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -31,44 +34,55 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: AppBar(
           title: Text("${widget.userModel.fullname}"),
           actions: [
-            IconButton(onPressed: (){}, icon: Icon(Icons.notification_add))
+            IconButton(onPressed: () {}, icon: Icon(Icons.notification_add))
           ],
         ),
+        floatingActionButton: ElevatedButton.icon(
+            onPressed: () {
+              Navigator.push(context,MaterialPageRoute(builder: (context)=>ChatScreen()));
+            },
+            style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12)),
+                backgroundColor: Colors.green,
+                elevation: 8),
+            icon: Icon(Icons.chat),
+            label: Text("Ask Doubts")),
         drawer: Drawer(
-          shape:RoundedRectangleBorder(
+          shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
-                topRight: Radius.circular(8),
-                bottomRight: Radius.circular(8)),
+                topRight: Radius.circular(8), bottomRight: Radius.circular(8)),
           ),
-          width: MediaQuery.of(context).size.width/1.5,
+          width: MediaQuery.of(context).size.width / 1.5,
           child: ListView(
             children: [
               DrawerHeader(
                 curve: Curves.bounceIn,
                 padding: const EdgeInsets.only(top: 10),
                 decoration: BoxDecoration(
-                    gradient: LinearGradient(colors: [
-                      Colors.blue,
-                      Colors.white
-                    ],
+                    gradient: LinearGradient(
+                        colors: [Colors.blue, Colors.white],
                         begin: Alignment.bottomLeft,
-                        end: Alignment.bottomRight
-                    )
-                ), //BoxDecoration
+                        end: Alignment.bottomRight)), //BoxDecoration
                 child: UserAccountsDrawerHeader(
-                  decoration: BoxDecoration(
-                      color: Colors.transparent
-                  ),
+                  decoration: BoxDecoration(color: Colors.transparent),
                   currentAccountPictureSize: Size.square(50),
                   currentAccountPicture: CircleAvatar(
                     radius: 55,
-                    child: Text("${widget.userModel.fullname![0].toUpperCase()}",style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.white),),
+                    child: Text(
+                      "${widget.userModel.fullname![0].toUpperCase()}",
+                      style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
                     backgroundColor: Colors.blue,
                   ),
 
                   accountName: Padding(
                     padding: EdgeInsets.only(top: 30),
-                    child: Text("${widget.userModel.fullname}",
+                    child: Text(
+                      "${widget.userModel.fullname}",
                       style: TextStyle(fontSize: 18),
                     ),
                   ),
@@ -81,21 +95,36 @@ class _HomeScreenState extends State<HomeScreen> {
                 leading: const Icon(Icons.person),
                 title: const Text(' My Profile '),
                 onTap: () {
-                  Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>ProfileScreen(userModel: widget.userModel,firebaseuser: widget.firebaseuser)));
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ProfileScreen(
+                              userModel: widget.userModel,
+                              firebaseuser: widget.firebaseuser)));
                 },
               ),
               ListTile(
                 leading: const Icon(Icons.workspace_premium),
                 title: const Text('Home'),
                 onTap: () {
-                  Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>HomeScreen(userModel: widget.userModel, firebaseuser: widget.firebaseuser)));
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => HomeScreen(
+                              userModel: widget.userModel,
+                              firebaseuser: widget.firebaseuser)));
                 },
               ),
               ListTile(
                 leading: const Icon(Icons.calendar_month),
                 title: const Text('Attendance'),
                 onTap: () {
-                  Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>AttendanceScreen(userModel: widget.userModel, firebaseuser: widget.firebaseuser)));
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AttendanceScreen(
+                              userModel: widget.userModel,
+                              firebaseuser: widget.firebaseuser)));
                 },
               ),
               ListTile(
@@ -108,7 +137,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
-
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -127,7 +155,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(14),
                       ),
-                      child: Image.network('https://assets.telegraphindia.com/telegraph/2022/Mar/1646209810_science-scholarship1.jpg',
+                      child: Image.network(
+                          'https://assets.telegraphindia.com/telegraph/2022/Mar/1646209810_science-scholarship1.jpg',
                           fit: BoxFit.fill),
                     ),
                   ),
@@ -141,7 +170,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         width: 400,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(14)),
-                        child: Image.network('https://img.etimg.com/thumb/msid-88607879,width-300,imgsize-55812,,resizemode-4,quality-100/education.jpg',
+                        child: Image.network(
+                            'https://img.etimg.com/thumb/msid-88607879,width-300,imgsize-55812,,resizemode-4,quality-100/education.jpg',
                             fit: BoxFit.cover)),
                   ),
                   Card(
@@ -156,7 +186,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(14),
                         ),
-                        child: Image.network('https://leverageedublog.s3.ap-south-1.amazonaws.com/blog/wp-content/uploads/2019/11/23171737/Modern-Education.png',
+                        child: Image.network(
+                            'https://leverageedublog.s3.ap-south-1.amazonaws.com/blog/wp-content/uploads/2019/11/23171737/Modern-Education.png',
                             fit: BoxFit.cover)),
                   ),
                 ],
@@ -176,15 +207,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       SizedBox(width: 20),
                       Text('Top Categories', style: TextStyle(fontSize: 26)),
-
                     ],
                   ),
-                  SizedBox(height: 10,),
+                  SizedBox(
+                    height: 10,
+                  ),
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
-                        SizedBox(width: 20,),
+                        SizedBox(
+                          width: 20,
+                        ),
                         //For AboutUs
                         Container(
                           height: 70,
@@ -197,28 +231,35 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Row(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(left: 30),
-                                child: Image.network("https://github.com/sujal880/College_App/blob/master/assets/images/info.png?raw=true",height: 40)
-                              ),
+                                  padding: const EdgeInsets.only(left: 30),
+                                  child: Image.network(
+                                      "https://github.com/sujal880/College_App/blob/master/assets/images/info.png?raw=true",
+                                      height: 40)),
                               SizedBox(width: 12),
                               Text('About Us',
                                   style: TextStyle(
-                                      fontWeight: FontWeight.bold, fontSize: 22))
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 22))
                             ],
                           ),
                         ),
-                        SizedBox(width: 20,),
+                        SizedBox(
+                          width: 20,
+                        ),
                         //For Lecture
                         GestureDetector(
-                          onTap: (){
-                            Navigator.push(context,MaterialPageRoute(builder: (context)=>Lectures()));
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Lectures()));
                           },
                           child: Container(
                             height: 70,
                             width: 200,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12),
-                              gradient:  LinearGradient(
+                              gradient: LinearGradient(
                                   colors: [Colors.purpleAccent, Colors.white]),
                             ),
                             child: Row(
@@ -226,7 +267,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 15),
                                   child: CircleAvatar(
-                                    child: Icon(Icons.tv, size: 35, color: Colors.black),
+                                    child: Icon(Icons.tv,
+                                        size: 35, color: Colors.black),
                                     backgroundColor: Colors.black12,
                                     radius: 25,
                                   ),
@@ -234,16 +276,22 @@ class _HomeScreenState extends State<HomeScreen> {
                                 SizedBox(width: 8),
                                 Text('Lectures',
                                     style: TextStyle(
-                                        fontSize: 22, fontWeight: FontWeight.bold))
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.bold))
                               ],
                             ),
                           ),
                         ),
-                        SizedBox(width: 20,),
+                        SizedBox(
+                          width: 20,
+                        ),
                         //For E-Libray
                         GestureDetector(
-                          onTap: (){
-                            Navigator.push(context,MaterialPageRoute(builder: (context)=>E_Library()));
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => E_Library()));
                           },
                           child: Container(
                             height: 70,
@@ -263,21 +311,26 @@ class _HomeScreenState extends State<HomeScreen> {
                                     backgroundColor: Colors.black12,
                                     radius: 25,
                                   ),
-
                                 ),
                                 SizedBox(width: 8),
                                 Text('E-Library',
                                     style: TextStyle(
-                                        fontWeight: FontWeight.bold, fontSize: 22))
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 22))
                               ],
                             ),
                           ),
                         ),
                         //For Extenal Links
-                        SizedBox(width: 20,),
+                        SizedBox(
+                          width: 20,
+                        ),
                         GestureDetector(
-                          onTap: (){
-                            Navigator.push(context,MaterialPageRoute(builder: (context)=>ExternalLinks()));
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ExternalLinks()));
                           },
                           child: Container(
                             height: 70,
@@ -293,15 +346,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                   padding: const EdgeInsets.only(left: 11),
                                   child: CircleAvatar(
                                     radius: 25,
-                                    child: Image.network('https://github.com/sujal880/College_App/blob/master/assets/images/external.png?raw=true',
-                                        height: 34,color: Colors.black),
+                                    child: Image.network(
+                                        'https://github.com/sujal880/College_App/blob/master/assets/images/external.png?raw=true',
+                                        height: 34,
+                                        color: Colors.black),
                                     backgroundColor: Colors.black12,
                                   ),
                                 ),
                                 SizedBox(width: 5),
                                 Text('External Links',
                                     style: TextStyle(
-                                        fontWeight: FontWeight.bold, fontSize: 22))
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 22))
                               ],
                             ),
                           ),
@@ -336,7 +392,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         padding: const EdgeInsetsDirectional.only(top: 7),
                         child: Text('SEE ALL',
                             style: TextStyle(
-                                fontWeight: FontWeight.bold, color: Colors.blue)),
+                                fontWeight: FontWeight.bold,
+                                color: Colors.blue)),
                       ),
                       Padding(
                         padding: const EdgeInsetsDirectional.only(top: 7),
@@ -380,7 +437,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   top: 20, start: 20),
                               child: Text('BCA Ist\nYear',
                                   style: TextStyle(
-                                      fontWeight: FontWeight.bold, fontSize:30)),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 30)),
                             ),
                           ]),
                           Padding(
@@ -388,15 +446,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                 start: 180, top: 19),
                             child: Stack(children: [
                               Container(
-                                clipBehavior: Clip.antiAlias,
-                                height: 108,
-                                width: 108,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                //child: Image.network("https://iotcdn.oss-ap-southeast-1.aliyuncs.com/subjects-in-arts.jpg",fit: BoxFit.cover,),
-                                child:Image.network("https://m.media-amazon.com/images/I/717-4TXKe9L.png")
-                              ),
+                                  clipBehavior: Clip.antiAlias,
+                                  height: 108,
+                                  width: 108,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  //child: Image.network("https://iotcdn.oss-ap-southeast-1.aliyuncs.com/subjects-in-arts.jpg",fit: BoxFit.cover,),
+                                  child: Image.network(
+                                      "https://m.media-amazon.com/images/I/717-4TXKe9L.png")),
                               Padding(
                                 padding: const EdgeInsetsDirectional.only(
                                     start: 6.0, top: 98),
@@ -465,8 +523,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                   borderRadius: BorderRadius.circular(12),
                                 ),
                                 //child:Image.network("https://www.edumilestones.com/blog/images/commerce-subjects-11th-class.png",fit: BoxFit.fill,)
-                                child:Image.network("https://technoindiauniversity.ac.in/ComputerApplication/images/school-of-computer-application1.jpg",fit: BoxFit.fill,)
-                            ),
+                                child: Image.network(
+                                  "https://technoindiauniversity.ac.in/ComputerApplication/images/school-of-computer-application1.jpg",
+                                  fit: BoxFit.fill,
+                                )),
                             Padding(
                               padding: const EdgeInsetsDirectional.only(
                                   start: 4, top: 95),
@@ -535,7 +595,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               //child: Image.network("https://img.freepik.com/free-vector/hand-drawn-science-education-background_23-2148499325.jpg?w=1060&t=st=1671340333~exp=1671340933~hmac=e2501597eaaa4d4405e7efef32182cad255abc47149c38b4940c7ee5c25ff79f",fit: BoxFit.fill,),
-                              child: Image.network("https://assets.telegraphindia.com/telegraph/2022/Mar/1647929416_resized-pic25.jpg",fit: BoxFit.fill,),
+                              child: Image.network(
+                                "https://assets.telegraphindia.com/telegraph/2022/Mar/1647929416_resized-pic25.jpg",
+                                fit: BoxFit.fill,
+                              ),
                             ),
                             Padding(
                               padding: const EdgeInsetsDirectional.only(
@@ -640,8 +703,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               SizedBox(height: 40),
-
-              SizedBox(height: 30,),
+              SizedBox(
+                height: 30,
+              ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -656,7 +720,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             fontWeight: FontWeight.bold, color: Colors.blue)),
                   ),
                   Padding(
-                    padding: const EdgeInsetsDirectional.only(top: 7,start: 3),
+                    padding: const EdgeInsetsDirectional.only(top: 7, start: 3),
                     child: Icon(Icons.arrow_circle_right,
                         color: Colors.blue, size: 20),
                   )
@@ -668,42 +732,63 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    SizedBox(width: 20,),
-                    OurCollegePerson(Post: "Principal's\nMessage", ImageUrl: "https://www.aishwaryacollege.edu.in/theme/RishiNepalia.jpg", Sheight: 25,Left: 162,
+                    SizedBox(
+                      width: 20,
+                    ),
+                    OurCollegePerson(
+                        Post: "Principal's\nMessage",
+                        ImageUrl:
+                            "https://www.aishwaryacollege.edu.in/theme/RishiNepalia.jpg",
+                        Sheight: 25,
+                        Left: 162,
                         SirName: "Dr.Rishi Nepalia",
-                        Message: "'It gives me great pleasure to invite\nyou to take initial peek into the heart that\nbeats behind the appealing facade of\nAishwarya College.I thank you for your\ninterest in this exceptional institution.",
+                        Message:
+                            "'It gives me great pleasure to invite\nyou to take initial peek into the heart that\nbeats behind the appealing facade of\nAishwarya College.I thank you for your\ninterest in this exceptional institution.",
                         TagName: "-Dr.Rishi Nepalia"),
-                    SizedBox(width: 20,),
-                    OurCollegePerson(Post:"HOD's\nMessage",Sheight: 43,Left: 120,
-                        ImageUrl: "https://www.aishwaryacollege.edu.in/images/faculty/162685674518.jpg", SirName: "Mr.Naveen Joshi",
-                        Message:'It gives me great pleasure to invite\nyou to take initial peek into the heart that\nbeats behind the appealing facade of\nAishwarya College.I thank you for your\ninterest in this exceptional institution.',
+                    SizedBox(
+                      width: 20,
+                    ),
+                    OurCollegePerson(
+                        Post: "HOD's\nMessage",
+                        Sheight: 43,
+                        Left: 120,
+                        ImageUrl:
+                            "https://www.aishwaryacollege.edu.in/images/faculty/162685674518.jpg",
+                        SirName: "Mr.Naveen Joshi",
+                        Message:
+                            'It gives me great pleasure to invite\nyou to take initial peek into the heart that\nbeats behind the appealing facade of\nAishwarya College.I thank you for your\ninterest in this exceptional institution.',
                         TagName: "-Mr.Naveen Dutt Joshi"),
-                    SizedBox(width: 20,),
-                    OurCollegePerson(Post: "Professor's\nMessage",Left: 125,
-                        ImageUrl: 'https://www.aishwaryacollege.edu.in/images/faculty/162685684319.jpg', SirName: 'Dr.Shailendra Purohit',
-                        Message: 'It gives me great pleasure to invite\nyou to take initial peek into the heart that\nbeats behind the appealing facade of\nAishwarya College.I thank you for your\ninterest in this exceptional institution.',
-                        TagName: '-Dr.Shailendra Purohit', Sheight: 10)
+                    SizedBox(
+                      width: 20,
+                    ),
+                    OurCollegePerson(
+                        Post: "Professor's\nMessage",
+                        Left: 125,
+                        ImageUrl:
+                            'https://www.aishwaryacollege.edu.in/images/faculty/162685684319.jpg',
+                        SirName: 'Dr.Shailendra Purohit',
+                        Message:
+                            'It gives me great pleasure to invite\nyou to take initial peek into the heart that\nbeats behind the appealing facade of\nAishwarya College.I thank you for your\ninterest in this exceptional institution.',
+                        TagName: '-Dr.Shailendra Purohit',
+                        Sheight: 10)
                   ],
                 ),
               ),
-              SizedBox(height: 15,)
+              SizedBox(
+                height: 15,
+              )
             ],
-
           ),
-
         ),
-
-
       ),
     );
-
   }
-  Widget BottomDetail(){
+
+  Widget BottomDetail() {
     return Row(
       children: [
         Padding(
-          padding: const EdgeInsetsDirectional.only(
-              top: 115, start: 20),
+          padding: const EdgeInsetsDirectional.only(top: 115, start: 20),
           child: Text('4.5',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -712,8 +797,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         SizedBox(width: 3),
         Padding(
-          padding:
-          const EdgeInsetsDirectional.only(top: 112),
+          padding: const EdgeInsetsDirectional.only(top: 112),
           child: Icon(
             Icons.star,
             color: Colors.yellow,
@@ -721,48 +805,39 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         SizedBox(width: 3),
         Padding(
-          padding:
-          const EdgeInsetsDirectional.only(top: 117),
+          padding: const EdgeInsetsDirectional.only(top: 117),
           child: Text('48K learners',
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.grey)),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.grey)),
         )
       ],
     );
   }
-  Widget BottomDetailPadding(){
+
+  Widget BottomDetailPadding() {
     return Padding(
-      padding: const EdgeInsetsDirectional.only(
-          top: 145, start: 20),
+      padding: const EdgeInsetsDirectional.only(top: 145, start: 20),
       child: Stack(children: [
         Container(
           height: 20,
           width: 110,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(6),
-              color: Colors.blueAccent),
+              borderRadius: BorderRadius.circular(6), color: Colors.blueAccent),
         ),
         Padding(
-          padding: const EdgeInsetsDirectional.only(
-              top: 2, start: 4),
+          padding: const EdgeInsetsDirectional.only(top: 2, start: 4),
           child: Text('Video Lessons',
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white)),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.white)),
         ),
         Padding(
-          padding:
-          const EdgeInsetsDirectional.only(top: 40),
+          padding: const EdgeInsetsDirectional.only(top: 40),
           child: Row(
             children: [
-              CircleAvatar(
-                  child: Image.network(
-                      Thorphy)),
+              CircleAvatar(child: Image.network(Thorphy)),
               SizedBox(width: 6),
               Padding(
-                padding: const EdgeInsetsDirectional.only(
-                    top: 2),
+                padding: const EdgeInsetsDirectional.only(top: 2),
                 child: Text('Enroll Now',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -775,32 +850,44 @@ class _HomeScreenState extends State<HomeScreen> {
       ]),
     );
   }
-  Future logOut()async{
-    await FirebaseAuth.instance.signOut().then((value) => Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>LogIn())));
+
+  Future logOut() async {
+    await FirebaseAuth.instance.signOut().then((value) =>
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => LogIn())));
     log("Log Out");
   }
 
-  Widget OurCollegePerson({required Post,required ImageUrl,required SirName, required Message , required TagName,required double Sheight,required double Left}){
+  Widget OurCollegePerson(
+      {required Post,
+      required ImageUrl,
+      required SirName,
+      required Message,
+      required TagName,
+      required double Sheight,
+      required double Left}) {
     return Container(
       height: 260,
       width: 300,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          color: Colors.black12
-      ),
+          borderRadius: BorderRadius.circular(12), color: Colors.black12),
       child: Padding(
         padding: const EdgeInsets.only(left: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 17,),
+            SizedBox(
+              height: 17,
+            ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(Post,
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 30)),
-                SizedBox(width: Sheight,),
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 30)),
+                SizedBox(
+                  width: Sheight,
+                ),
                 Stack(
                   children: [
                     Container(
@@ -810,11 +897,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      child: Image.network(ImageUrl,
-                          fit: BoxFit.fill),
+                      child: Image.network(ImageUrl, fit: BoxFit.fill),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 88,left: 5),
+                      padding: const EdgeInsets.only(top: 88, left: 5),
                       child: Container(
                         height: 20,
                         width: 90,
@@ -834,15 +920,17 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
-            SizedBox(height: 12,),
-            Text(
-                Message,
-                style: TextStyle(fontSize: 14)),
-            SizedBox(height: 5,),
+            SizedBox(
+              height: 12,
+            ),
+            Text(Message, style: TextStyle(fontSize: 14)),
+            SizedBox(
+              height: 5,
+            ),
             Padding(
               padding: EdgeInsets.only(left: Left),
-              child: Text(TagName,
-                  style: TextStyle(fontWeight: FontWeight.bold)),
+              child:
+                  Text(TagName, style: TextStyle(fontWeight: FontWeight.bold)),
             ),
           ],
         ),
