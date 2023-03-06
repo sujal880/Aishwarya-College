@@ -1,6 +1,7 @@
 //Wap in Flutter To Design A Computer Science Page
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class Lecture extends StatelessWidget {
   @override
@@ -28,7 +29,7 @@ class Lecture extends StatelessWidget {
                         padding: const EdgeInsetsDirectional.only(top: 230),
                         child: Stack(children: [
                           Container(
-                            height: H,
+                            height: 200,
                             width: W,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(40),
@@ -118,7 +119,7 @@ class Lecture extends StatelessWidget {
                               ),
                               Container(
                                 width: W,
-                                height: 900,
+                                height:600,
                                 color: Colors.greenAccent,
                                 child: TabBarView(
                                   children: [One(), Two(), ],
@@ -162,7 +163,7 @@ class One extends StatelessWidget {
                   SizedBox(width: 20),
                   Icon(Icons.calendar_month,size: 50,color: Colors.black38),
                   SizedBox(width: 20),
-                  Text('3 Years of Free Access',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20))
+                  Text('1 Year of Free Access',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20))
                 ],
               ),
               SizedBox(height: 30),
@@ -176,8 +177,8 @@ class One extends StatelessWidget {
                       Text('Graduation Level Course',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
                       SizedBox(height: 7),
                       Padding(
-                        padding: const EdgeInsetsDirectional.only(end: 160),
-                        child: Text('(3 Years)',style:TextStyle(fontWeight: FontWeight.bold,color: Colors.grey)),
+                        padding: const EdgeInsetsDirectional.only(end: 180),
+                        child: Text('(1 Year)',style:TextStyle(fontWeight: FontWeight.bold,color: Colors.grey)),
                       )
                     ],
                   )
@@ -205,7 +206,7 @@ class One extends StatelessWidget {
               SizedBox(height: 20),
               Row(
                 children: [
-                  SizedBox(width: 20),
+                  SizedBox(width: 14),
                   Text('What will I learn?',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 22),),
                 ],
               ),
@@ -222,53 +223,78 @@ class One extends StatelessWidget {
                   Text('          The BCA subjects cover programming languages\n          like C++ and JAVA, Networking, Fundamentals of\n          Computers, Multimedia Systems,Data Structure,\n          Web-Based Application Development, Web\n          Designing, and Software Engineering amongst\n          others.',style: TextStyle(fontSize: 15),),
                 ],
               ),
-              SizedBox(height: 20),
-              Row(
-                children: [
-                  SizedBox(width: 20),
-                  Text('2.Master of Computer Applications (M.C.A)',style:TextStyle(fontWeight: FontWeight.bold,fontSize: 18)),
-                ],
-              ),
-              SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsetsDirectional.only(),
-                child: Text('The basic curriculum of a typical MCA programme\n           includes topics like network and database\n           management, electronics, mobile technologies,\n           financial accounting, mathematics, statistics, cloud\n           computing, Java programming etc.'),
-              ),
-              SizedBox(height: 30),
-              Container(
-                height: 20,
-                width: double.infinity,
-                color: Colors.black12,
-              )
             ],
           ),
-        )
+        ),
     );
   }
 }
 class Two extends StatelessWidget {
+  var Curriculum=[
+    {'tag':'Latest Updates'},
+    {'tag':'Online Admission'},
+    {'tag':'Examination Forms'},
+    {'tag':'Results'},
+    {'tag':'Syllabus'},
+    {'tag':'College Notice Board'},
+  ];
 
   @override
   Widget build(BuildContext context) {
     var H=MediaQuery.of(context).size.height;
-    var W=MediaQuery.of(context).size.width;
+    double _w = MediaQuery.of(context).size.width;
     return Scaffold(
-        body: Column(
-          children: [
-            Row(
-              children: [
-                Container(
-                  height: 50,
-                  width: W,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.grey
+        body:  AnimationLimiter(
+          child: ListView.builder(
+            padding: EdgeInsets.all(_w / 30),
+            physics:
+            BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+            itemCount: Curriculum.length,
+            itemBuilder: (BuildContext context, int index) {
+              return AnimationConfiguration.staggeredList(
+                position: index,
+                delay: Duration(milliseconds: 100),
+                child: SlideAnimation(
+                  duration: Duration(milliseconds: 2500),
+                  curve: Curves.fastLinearToSlowEaseIn,
+                  verticalOffset: -250,
+                  child: ScaleAnimation(
+                    duration: Duration(milliseconds: 1500),
+                    curve: Curves.fastLinearToSlowEaseIn,
+                    child: Container(
+                      margin: EdgeInsets.only(bottom: _w / 20),
+                      height: _w / 4,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            blurRadius: 40,
+                            spreadRadius: 10,
+                          ),
+                        ],
+                      ),
+                      child: Row(
+                        children: [
+                          SizedBox(width: 20,),
+                          CircleAvatar(
+                            radius:30,
+                            backgroundColor: Colors.greenAccent,
+                          ),
+                          SizedBox(width: 10,),
+                          Text(Curriculum[index]['tag']!,style: TextStyle(
+                              fontSize: 18,fontWeight: FontWeight.bold,color: Colors.black
+                          ),)
+                        ],
+                      ),
+                    ),
                   ),
-                )
-              ],
-            )
-          ],
-        )
+                ),
+              );
+            },
+          ),
+        ),
     );
   }
 }

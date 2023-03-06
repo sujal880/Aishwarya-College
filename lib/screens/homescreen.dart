@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:aishwarya_college/screens/AboutUs.dart';
 import 'package:aishwarya_college/screens/attendancescreen.dart';
 import 'package:aishwarya_college/screens/external_links.dart';
 import 'package:aishwarya_college/screens/lecture.dart';
@@ -220,27 +221,32 @@ class _HomeScreenState extends State<HomeScreen> {
                           width: 20,
                         ),
                         //For AboutUs
-                        Container(
-                          height: 70,
-                          width: 200,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            gradient: LinearGradient(
-                                colors: [Colors.lightBlue, Colors.white]),
-                          ),
-                          child: Row(
-                            children: [
-                              Padding(
-                                  padding: const EdgeInsets.only(left: 30),
-                                  child: Image.network(
-                                      "https://github.com/sujal880/College_App/blob/master/assets/images/info.png?raw=true",
-                                      height: 40)),
-                              SizedBox(width: 12),
-                              Text('About Us',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 22))
-                            ],
+                        GestureDetector(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>Aboutus()));
+                          },
+                          child: Container(
+                            height: 70,
+                            width: 200,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              gradient: LinearGradient(
+                                  colors: [Colors.lightBlue, Colors.white]),
+                            ),
+                            child: Row(
+                              children: [
+                                Padding(
+                                    padding: const EdgeInsets.only(left: 30),
+                                    child: Image.network(
+                                        "https://github.com/sujal880/College_App/blob/master/assets/images/info.png?raw=true",
+                                        height: 40)),
+                                SizedBox(width: 12),
+                                Text('About Us',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 22))
+                              ],
+                            ),
                           ),
                         ),
                         SizedBox(
@@ -491,10 +497,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Stack(children: [
                         InkWell(
                           onTap: () {
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (context) => Commerce()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Lecture()));
                           },
                           child: Container(
                             height: 260,
@@ -563,10 +569,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Stack(children: [
                         InkWell(
                           onTap: () {
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (context) => Science()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Lecture()));
                           },
                           child: Container(
                             height: 260,
@@ -628,77 +634,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         BottomDetailPadding()
                       ]),
                     ),
-                    /*SizedBox(width: 20),
-                    Card(
-                      elevation: 15,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12)),
-                      child: Stack(children: [
-                        InkWell(
-                          onTap: () {
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (context) => CScience()));
-                          },
-                          child: Container(
-                            height: 260,
-                            width: 300,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                                color: Colors.black12),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.only(
-                              top: 20, start: 20),
-                          child: Text('Computer\nScience',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 30)),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.only(
-                              start: 185, top: 20),
-                          child: Stack(children: [
-                            Container(
-                              clipBehavior: Clip.antiAlias,
-                              height: 100,
-                              width: 100,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: Image.network('https://tryengineering.org/wp-content/uploads/bigstock-Future-Artificial-Intelligence-366858865-1536x864.jpg',
-                                  fit: BoxFit.cover),
-                            ),
-                            Padding(
-                              padding: const EdgeInsetsDirectional.only(
-                                  start: 23, top: 90),
-                              child: Stack(children: [
-                                Container(
-                                  height: 20,
-                                  width: 60,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(12),
-                                      color: Colors.green),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsetsDirectional.only(
-                                      start: 10, top: 5),
-                                  child: Text('CScience',
-                                      style: TextStyle(
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white)),
-                                )
-                              ]),
-                            )
-                          ]),
-                        ),
-                        //new Changes
-                        BottomDetail(),
-                        BottomDetailPadding(),
-                      ]),
-                    ),*/
                   ],
                 ),
               ),
